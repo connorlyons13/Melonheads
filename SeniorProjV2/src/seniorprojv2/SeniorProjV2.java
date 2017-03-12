@@ -8,6 +8,7 @@ package seniorprojv2;
 /**
  *
  * @author Connor
+ * @author Carson
  */
 public class SeniorProjV2 {
 
