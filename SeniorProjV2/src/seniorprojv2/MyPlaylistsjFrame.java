@@ -52,7 +52,9 @@ public class MyPlaylistsjFrame extends javax.swing.JFrame {
         logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seniorprojv2/Melonheads50by50.png"))); // NOI18N
 
         meloLabel.setFont(new java.awt.Font("Bebas Neue", 0, 36)); // NOI18N
+        meloLabel.setForeground(new java.awt.Color(51, 51, 255));
         meloLabel.setText("MELONHEADS");
+        meloLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(51, 204, 0), new java.awt.Color(0, 153, 0), new java.awt.Color(0, 255, 0)));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 

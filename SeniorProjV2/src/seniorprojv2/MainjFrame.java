@@ -8,6 +8,7 @@ package seniorprojv2;
 /**
  *
  * @author Connor
+ * @author Carson
  */
 public class MainjFrame extends javax.swing.JFrame {
 
@@ -16,6 +17,7 @@ public class MainjFrame extends javax.swing.JFrame {
      */
     public MainjFrame() {
         initComponents();
+        
     }
 
     /**
@@ -50,8 +52,11 @@ public class MainjFrame extends javax.swing.JFrame {
         logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seniorprojv2/Melonheads50by50.png"))); // NOI18N
 
+        meloLabel.setBackground(new java.awt.Color(255, 255, 255));
         meloLabel.setFont(new java.awt.Font("Bebas Neue", 0, 36)); // NOI18N
+        meloLabel.setForeground(new java.awt.Color(0, 0, 255));
         meloLabel.setText("MELONHEADS");
+        meloLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(51, 204, 0), new java.awt.Color(0, 153, 0), new java.awt.Color(0, 255, 0)));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -169,8 +174,8 @@ public class MainjFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(meloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                        .addComponent(meloLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addSongButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -183,7 +188,7 @@ public class MainjFrame extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(335, Short.MAX_VALUE)
                 .addComponent(playSongButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(255, 255, 255))
             .addGroup(layout.createSequentialGroup()
