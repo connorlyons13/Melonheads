@@ -103,7 +103,7 @@ public class MainjFrame extends javax.swing.JFrame {
         logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seniorprojv2/Melonheads50by50.png"))); // NOI18N
 
         meloLabel.setBackground(new java.awt.Color(255, 255, 255));
-        meloLabel.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        meloLabel.setFont(new java.awt.Font("SansSerif", 2, 40)); // NOI18N
         meloLabel.setForeground(new java.awt.Color(0, 0, 255));
         meloLabel.setText("MELONHEADS");
         meloLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(51, 204, 0), new java.awt.Color(0, 153, 0), new java.awt.Color(0, 255, 0)));
