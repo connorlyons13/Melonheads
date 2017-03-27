@@ -14,7 +14,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.Level;
@@ -61,6 +66,50 @@ public class MainjFrame extends javax.swing.JFrame{
         jLabel6.setText("album (optional):");
         
         //FlowLayout playlistLayout = new FlowLayout();
+        
+        try {
+            File playlists = new File("playlists/playlist.txt");
+            BufferedReader reader = new BufferedReader(new FileReader(playlists));
+            String line;
+            while((line = reader.readLine()) != null){
+                JButton newBtn = new JButton(line);
+
+                newBtn.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent ae2){
+                        jLabel2.setVisible(false);
+                        jLabel3.setVisible(false);
+                        jLabel4.setVisible(false);
+                        jLabel5.setVisible(false);
+                        jLabel6.setVisible(false);
+                        jTextField2.setVisible(false);
+                        jTextField3.setVisible(false);
+                        jTextField4.setVisible(false);
+                        jTextField5.setVisible(false);
+                        jComboBox1.setVisible(false);
+                        jButtonSubimtSong.setVisible(false);
+                        jButtonSubmitPlaylist.setVisible(false);
+                        songTitleLbl.setVisible(true);
+                        songArtistLbl.setVisible(true);
+                        songAlbumLbl.setVisible(true);
+                        songPlaysLbl.setVisible(true);
+                        musicSeparator.setVisible(true);
+                        jScrollPane1.setVisible(true);
+                        jLabelSelectedMenu.setText(newBtn.getText());
+                        //Then populate with music from that playlist
+                    }
+                });
+
+                jPanelMenuPlaylistDisplay.add(newBtn);
+                jPanelMenuPlaylistDisplay.validate();
+                jScrollPanePlaylistDisplay.validate();
+            
+            }
+        }catch(IOException e)
+        {
+            
+        }
+        
+        
         
     }
 
@@ -650,6 +699,28 @@ public class MainjFrame extends javax.swing.JFrame{
             }
         });
         
+         try {
+            File playlists = new File("playlists/playlist.txt");
+            FileWriter fileWriter = new FileWriter(playlists, true);
+            PrintWriter playlistWriter = new PrintWriter(fileWriter, true);
+            playlistWriter.println(jTextField2.getText());
+            playlistWriter.close();
+            
+            File newPlaylist = new File("playlists/" + jTextField2.getText() +".txt");
+            FileWriter fileWriter2 = new FileWriter(newPlaylist, true);
+            PrintWriter playlistWriter2 = new PrintWriter(fileWriter2, true);
+            playlistWriter2.println("1");
+            playlistWriter2.close();
+        
+        }catch(IOException e)
+        {
+            
+        }
+        
+        
+        
+        
+        
         jPanelMenuPlaylistDisplay.add(newBtn);
         jPanelMenuPlaylistDisplay.validate();
         jScrollPanePlaylistDisplay.validate();
@@ -685,7 +756,7 @@ public class MainjFrame extends javax.swing.JFrame{
 
      public static String getSong(String seachTerm) throws Exception {
       StringBuilder result = new StringBuilder();
-      URL url = new URL("http://IPADDRESSHERE/songs/search/" + seachTerm); //needs to add IP 
+      URL url = new URL("http://IPGOESHERE/songs/search/" + seachTerm); //needs to add IP 
       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       conn.setRequestMethod("GET");
       BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
