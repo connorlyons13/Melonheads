@@ -7,7 +7,6 @@ package seniorprojv3;
 
 //imports here
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -18,10 +17,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -740,7 +736,7 @@ public class MainjFrame extends javax.swing.JFrame{
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             String test = null;
             try {
-               test = getSong(jTextFieldSearch.getText()) ;
+               test = APIConnections.getSong(jTextFieldSearch.getText()) ;
                musicButton.doClick();
                JButton newBtn = new JButton(test);
                jPanel1.add(newBtn);
@@ -754,19 +750,6 @@ public class MainjFrame extends javax.swing.JFrame{
         
     }//GEN-LAST:event_jTextFieldSearchKeyPressed
 
-     public static String getSong(String seachTerm) throws Exception {
-      StringBuilder result = new StringBuilder();
-      URL url = new URL("http://IPGOESHERE/songs/search/" + seachTerm); //needs to add IP 
-      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-      conn.setRequestMethod("GET");
-      BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-      String line;
-      while ((line = rd.readLine()) != null) {
-         result.append(line);
-      }
-      rd.close();
-      return result.toString();
-   }
     
     /**
      * @param args the command line arguments
