@@ -13,11 +13,29 @@ import java.net.URL;
 public class APIConnections {
     
     private static final String address = "http://<IP_ADDRESS>";
+    public static final int GET_SEARCH = 0, GET_TITLE = 1, GET_ARTIST = 2, GET_ALBUM = 3;
     
-    public static String getSong(String seachTerm) throws Exception {
-        //TODO: currently returns a string of json objects, will return a list of Song objects
+    public static String getSongs(int getType, String seachTerm) throws Exception {
+       //TODO: currently returns a string of json objects, will return a list of Song objects
       StringBuilder result = new StringBuilder();
-      URL url = new URL(address + "/songs/search/" + seachTerm);
+      URL url = null;
+      switch(getType) {
+          case GET_SEARCH:
+              url = new URL(address + "/songs/search/" + seachTerm);
+              break;
+          case GET_TITLE:
+              url = new URL(address + "/songs/title/" + seachTerm);
+              break;
+          case GET_ARTIST:
+              url = new URL(address + "/songs/artist/" + seachTerm);
+              break;
+          case GET_ALBUM:
+              url = new URL(address + "/songs/album/" + seachTerm);
+              break;
+          default:
+              url = new URL(address + "/songs/search/" + seachTerm);
+              break;
+      }
       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       conn.setRequestMethod("GET");
       BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -74,6 +92,7 @@ public class APIConnections {
 	con.setRequestProperty("Accept", "application/json");
 	con.setRequestMethod("PUT");
         
+        // create json of song information to send to the API
 	String input = "{ \"id\": " + id + ", \"title\": \"" + title + "\", \"artist\": \"" + artist
             + "\", \"album\": \"" + album + "\", \"url\": \"" + url +"\", \"src\": \"" + src + "\" }";
 
@@ -108,6 +127,7 @@ public class APIConnections {
 	con.setRequestProperty("Accept", "application/json");
 	con.setRequestMethod("DELETE");
         
+        // put id in json format to send to the API
 	String input = "{ \"id\": " + id + " }";
 
 	OutputStream os = con.getOutputStream();
