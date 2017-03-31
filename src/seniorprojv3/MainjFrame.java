@@ -9,6 +9,7 @@ package seniorprojv3;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -20,6 +21,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import sun.applet.Main;
 
 
 
@@ -62,6 +65,13 @@ public class MainjFrame extends javax.swing.JFrame{
         jLabel6.setText("album (optional):");
         
         //FlowLayout playlistLayout = new FlowLayout();
+        
+        ImageIcon icon = new ImageIcon(Main.class.getResource("/resources/Melonheads50by50.png"));
+        this.setIconImage(icon.getImage());
+        Toolkit tk = Toolkit.getDefaultToolkit();
+	int screenWidth = tk.getScreenSize().width;
+	int screenHeight = tk.getScreenSize().height;
+	setLocation(screenWidth/4, screenHeight/5);
         
         try {
             File playlists = new File("playlists/playlist.txt");
