@@ -6,6 +6,7 @@
 package seniorprojv3;
 
 //imports here
+import api.APIConnections;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
@@ -746,7 +747,7 @@ public class MainjFrame extends javax.swing.JFrame{
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             String test = null;
             try {
-               test = APIConnections.getSong(jTextFieldSearch.getText()) ;
+               test = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText()) ;
                musicButton.doClick();
                JButton newBtn = new JButton(test);
                jPanel1.add(newBtn);
