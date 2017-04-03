@@ -67,8 +67,8 @@ public class MainjFrame extends javax.swing.JFrame{
         
         //FlowLayout playlistLayout = new FlowLayout();
         
-        ImageIcon icon = new ImageIcon(Main.class.getResource("/resources/Melonheads50by50.png"));
-        this.setIconImage(icon.getImage());
+        //ImageIcon icon = new ImageIcon(Main.class.getResource("/resources/Melonheads50by50.png"));
+        //this.setIconImage(icon.getImage());
         Toolkit tk = Toolkit.getDefaultToolkit();
 	int screenWidth = tk.getScreenSize().width;
 	int screenHeight = tk.getScreenSize().height;
@@ -172,7 +172,6 @@ public class MainjFrame extends javax.swing.JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Melonheads50by50.png")));
 
         meloLabel.setBackground(new java.awt.Color(255, 255, 255));
         meloLabel.setFont(new java.awt.Font("Bebas Neue", 0, 40)); // NOI18N
