@@ -172,6 +172,7 @@ public class MainjFrame extends javax.swing.JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Connor\\Pictures\\Melonheads50by50.png")); // NOI18N
 
         meloLabel.setBackground(new java.awt.Color(255, 255, 255));
         meloLabel.setFont(new java.awt.Font("Bebas Neue", 0, 40)); // NOI18N
