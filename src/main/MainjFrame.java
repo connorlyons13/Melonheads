@@ -144,7 +144,6 @@ public class MainjFrame extends javax.swing.JFrame{
         addSongButton = new javax.swing.JButton();
         jTextFieldSearch = new javax.swing.JTextField();
         createNewPlaylistButton = new javax.swing.JButton();
-        jProgressBar1 = new javax.swing.JProgressBar();
         playSongButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabelSelectedMenu = new javax.swing.JLabel();
@@ -168,17 +167,16 @@ public class MainjFrame extends javax.swing.JFrame{
         songArtistLbl = new javax.swing.JLabel();
         songAlbumLbl = new javax.swing.JLabel();
         songPlaysLbl = new javax.swing.JLabel();
+        playPnl = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Melonheads50by50.png"))); // NOI18N
 
         meloLabel.setBackground(new java.awt.Color(255, 255, 255));
         meloLabel.setFont(new java.awt.Font("Bebas Neue", 0, 40)); // NOI18N
-        meloLabel.setForeground(new java.awt.Color(0, 0, 255));
         meloLabel.setText("MELONHEADS");
-        meloLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(51, 204, 0), new java.awt.Color(0, 153, 0), new java.awt.Color(0, 255, 0)));
+        meloLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
 
         jPanelMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -300,7 +298,7 @@ public class MainjFrame extends javax.swing.JFrame{
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabelSelectedMenu.setFont(new java.awt.Font("Bebas Neue", 0, 48)); // NOI18N
-        jLabelSelectedMenu.setForeground(new java.awt.Color(0, 102, 102));
+        jLabelSelectedMenu.setForeground(new java.awt.Color(51, 153, 0));
         jLabelSelectedMenu.setText("Create New Playlist");
 
         jLabel2.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
@@ -440,13 +438,29 @@ public class MainjFrame extends javax.swing.JFrame{
                 .addComponent(jScrollPane1))
         );
 
+        javax.swing.GroupLayout playPnlLayout = new javax.swing.GroupLayout(playPnl);
+        playPnl.setLayout(playPnlLayout);
+        playPnlLayout.setHorizontalGroup(
+            playPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        playPnlLayout.setVerticalGroup(
+            playPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 25, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(playSongButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(253, 253, 253))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(playPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -462,14 +476,6 @@ public class MainjFrame extends javax.swing.JFrame{
                             .addComponent(createNewPlaylistButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(361, Short.MAX_VALUE)
-                .addComponent(playSongButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(255, 255, 255))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -490,11 +496,11 @@ public class MainjFrame extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(createNewPlaylistButton))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playSongButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(playPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -815,7 +821,6 @@ public class MainjFrame extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelMenuPlaylistDisplay;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPanePlaylistDisplay;
     private javax.swing.JSeparator jSeparator1;
@@ -833,6 +838,7 @@ public class MainjFrame extends javax.swing.JFrame{
     private javax.swing.JSeparator musicSeparator;
     private javax.swing.JButton myPlaylistsButton;
     private javax.swing.JButton newAdditionsButton;
+    private javax.swing.JPanel playPnl;
     private javax.swing.JButton playSongButton;
     private javax.swing.JButton popularPlaylistsButton3;
     private javax.swing.JLabel songAlbumLbl;
