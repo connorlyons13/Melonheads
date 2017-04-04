@@ -1,5 +1,5 @@
 
-package seniorprojv3;
+package main;
 
 /**
  *

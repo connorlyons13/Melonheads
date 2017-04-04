@@ -1,12 +1,16 @@
 package api;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import main.Song;
 
 /**
  *
@@ -18,8 +22,7 @@ public class APIConnections {
     public static final int GET_SEARCH = 0, GET_TITLE = 1, GET_ARTIST = 2, GET_ALBUM = 3;
     public static final String SRC_YOUTUBE = "youtube";
     
-    public static String getSongs(int getType, String seachTerm) throws Exception {
-       //TODO: currently returns a string of json objects, will return a list of Song objects
+    public static ArrayList<Song> getSongs(int getType, String seachTerm) throws Exception {
       StringBuilder result = new StringBuilder();
       URL url = null;
       switch(getType) {
@@ -47,10 +50,13 @@ public class APIConnections {
          result.append(line);
       }
       rd.close();
-      return result.toString();
+      
+      // parse json array to ArrayList
+      ArrayList<Song> songs = new Gson().fromJson(result.toString(), new TypeToken<ArrayList<Song>>(){}.getType());
+      return songs;
     }
     
-    public static String createSong(String title, String artist, String album, String url, String src) throws Exception {
+    public static Song createSong(String title, String artist, String album, String url, String src) throws Exception {
         // if the source is youtube, we only need the video id from the url
         if(src.equals(SRC_YOUTUBE)) {
             String videoId = getYoutubeVideoId(url);
@@ -75,7 +81,6 @@ public class APIConnections {
 	os.write(input.getBytes());
 	os.flush();
 
-	//TODO: currently returns a string of a json object, will return a Song object that was created
 	StringBuilder sb = new StringBuilder();
 	int HttpResult = con.getResponseCode();
 	if (HttpResult == HttpURLConnection.HTTP_OK) {
@@ -86,13 +91,14 @@ public class APIConnections {
                 sb.append(line + "\n");  
             } 
             br.close();
-            return "" + sb.toString();  
+            Gson gson = new Gson();
+            return gson.fromJson(sb.toString(), Song.class); // parse JSON response to Song object 
 	} else {
-            return con.getResponseMessage();  
+            return null; // client will know that the endpoint was not reached
 	}
     }
     
-    public static String updateSong(int id, String title, String artist, String album, String url, String src) throws Exception {
+    public static Song updateSong(int id, String title, String artist, String album, String url, String src) throws Exception {
         URL object;
         object = new URL(address + "/songs/update");
 	HttpURLConnection con = (HttpURLConnection) object.openConnection();
@@ -110,7 +116,6 @@ public class APIConnections {
 	os.write(input.getBytes());
 	os.flush();
 
-	//TODO: currently returning a string of a json object, will return a Song object that was updated
 	StringBuilder sb = new StringBuilder();  
 	int HttpResult = con.getResponseCode(); 
 	if (HttpResult == HttpURLConnection.HTTP_OK) {
@@ -121,9 +126,10 @@ public class APIConnections {
                 sb.append(line + "\n");  
             }
             br.close();
-            return "" + sb.toString();  
+            Gson gson = new Gson();
+            return gson.fromJson(sb.toString(), Song.class); // parse JSON response to Song object
 	} else {
-            return con.getResponseMessage();  
+            return null; // client will know that the endpoint was not reached
 	}  
     }
     

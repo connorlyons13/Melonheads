@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package seniorprojv3;
+package main;
 
 //imports here
 import api.APIConnections;
@@ -746,7 +746,8 @@ public class MainjFrame extends javax.swing.JFrame{
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             String test = null;
             try {
-               test = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText()) ;
+               // TODO: create list of songs to display and populate it with the getSongs search
+               //test = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText()) ;
                musicButton.doClick();
                JButton newBtn = new JButton(test);
                jPanel1.add(newBtn);

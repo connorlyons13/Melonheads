@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package seniorprojv3;
+package main;
 
 //imports here
 import javax.swing.JButton;
@@ -59,7 +59,6 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(760, 460));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
