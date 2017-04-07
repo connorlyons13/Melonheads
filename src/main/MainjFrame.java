@@ -7,6 +7,8 @@ package main;
 
 //imports here
 import api.APIConnections;
+import static api.APIConnections.GET_ALBUM;
+import static api.APIConnections.GET_TITLE;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
@@ -27,6 +29,7 @@ import sun.applet.Main;
 
 
 
+
 /**
  *
  * @author Connor
@@ -41,6 +44,7 @@ public class MainjFrame extends javax.swing.JFrame{
      */
     public MainjFrame() {
         initComponents();
+        advSearchPannleButton.setVisible(false);
         jLabelSelectedMenu.setText("");
         jSeparator4.setVisible(false);
         jLabel2.setVisible(false);
@@ -167,12 +171,13 @@ public class MainjFrame extends javax.swing.JFrame{
         songArtistLbl = new javax.swing.JLabel();
         songAlbumLbl = new javax.swing.JLabel();
         songPlaysLbl = new javax.swing.JLabel();
+        advSearchPannleButton = new javax.swing.JButton();
         playPnl = new javax.swing.JPanel();
+        advSearchButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Connor\\Pictures\\Melonheads50by50.png")); // NOI18N
 
         meloLabel.setBackground(new java.awt.Color(255, 255, 255));
         meloLabel.setFont(new java.awt.Font("Bebas Neue", 0, 40)); // NOI18N
@@ -354,6 +359,14 @@ public class MainjFrame extends javax.swing.JFrame{
         songPlaysLbl.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
         songPlaysLbl.setText("plays");
 
+        advSearchPannleButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        advSearchPannleButton.setText("Search");
+        advSearchPannleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                advSearchPannleButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -385,6 +398,8 @@ public class MainjFrame extends javax.swing.JFrame{
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButtonSubmitPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButtonSubimtSong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(advSearchPannleButton)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -427,7 +442,9 @@ public class MainjFrame extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSubimtSong, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonSubmitPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(advSearchPannleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonSubmitPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(musicSeparator, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -450,6 +467,13 @@ public class MainjFrame extends javax.swing.JFrame{
             .addGap(0, 25, Short.MAX_VALUE)
         );
 
+        advSearchButton.setText("Advanced Search");
+        advSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                advSearchButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -469,7 +493,9 @@ public class MainjFrame extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addSongButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(advSearchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanelMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -487,7 +513,10 @@ public class MainjFrame extends javax.swing.JFrame{
                     .addComponent(addSongButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(meloLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(advSearchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -541,6 +570,7 @@ public class MainjFrame extends javax.swing.JFrame{
         songPlaysLbl.setVisible(false);
         musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
+        advSearchPannleButton.setVisible(false);
     }//GEN-LAST:event_addSongButtonActionPerformed
 
     private void myPlaylistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myPlaylistsButtonActionPerformed
@@ -564,6 +594,7 @@ public class MainjFrame extends javax.swing.JFrame{
         songPlaysLbl.setVisible(false);
         musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
+        advSearchPannleButton.setVisible(false);
     }//GEN-LAST:event_myPlaylistsButtonActionPerformed
 
     private void musicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicButtonActionPerformed
@@ -587,6 +618,7 @@ public class MainjFrame extends javax.swing.JFrame{
         songPlaysLbl.setVisible(true);
         musicSeparator.setVisible(true);
         jScrollPane1.setVisible(true);
+        advSearchPannleButton.setVisible(false);
     }//GEN-LAST:event_musicButtonActionPerformed
 
     private void createNewPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewPlaylistButtonActionPerformed
@@ -616,6 +648,7 @@ public class MainjFrame extends javax.swing.JFrame{
         songPlaysLbl.setVisible(false);
         musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
+        advSearchPannleButton.setVisible(false);
     }//GEN-LAST:event_createNewPlaylistButtonActionPerformed
 
     private void popularPlaylistsButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popularPlaylistsButton3ActionPerformed
@@ -639,6 +672,7 @@ public class MainjFrame extends javax.swing.JFrame{
         songPlaysLbl.setVisible(false);
         musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
+        advSearchPannleButton.setVisible(false);
     }//GEN-LAST:event_popularPlaylistsButton3ActionPerformed
 
     private void newAdditionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAdditionsButtonActionPerformed
@@ -662,6 +696,7 @@ public class MainjFrame extends javax.swing.JFrame{
         songPlaysLbl.setVisible(true);
         musicSeparator.setVisible(true);
         jScrollPane1.setVisible(true);
+        advSearchPannleButton.setVisible(false);
     }//GEN-LAST:event_newAdditionsButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -690,6 +725,7 @@ public class MainjFrame extends javax.swing.JFrame{
         JButton newBtn = new JButton(jTextField2.getText());
         newBtn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae2){
+                advSearchPannleButton.setVisible(false);
                 jLabel2.setVisible(false);
                 jLabel3.setVisible(false);
                 jLabel4.setVisible(false);
@@ -769,6 +805,72 @@ public class MainjFrame extends javax.swing.JFrame{
         
     }//GEN-LAST:event_jTextFieldSearchKeyPressed
 
+    private void advSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advSearchButtonActionPerformed
+       jLabelSelectedMenu.setText("Advanced Search");
+        jSeparator4.setVisible(true);
+        jLabel2.setVisible(false);
+        jTextField2.setVisible(false);
+        jLabel3.setVisible(true);
+        jLabel3.setText("Select Advanced Search Option: ");
+        jComboBox1.setVisible(true);
+        jComboBox1.removeAllItems();
+        jComboBox1.addItem("Artist");
+        jComboBox1.addItem("Album");
+        jComboBox1.addItem("Song Name");
+        advSearchPannleButton.setVisible(true);
+        
+        
+        jLabel4.setVisible(true);
+        jLabel4.setText("Enter search term: ");
+        jLabel5.setVisible(false);
+        jLabel6.setVisible(false);
+        jTextField3.setVisible(true);
+        jTextField4.setVisible(false);
+        jTextField5.setVisible(false);
+        jButtonSubimtSong.setVisible(false);
+        jButtonSubmitPlaylist.setVisible(false);
+        songTitleLbl.setVisible(false);
+        songArtistLbl.setVisible(false);
+        songAlbumLbl.setVisible(false);
+        songPlaysLbl.setVisible(false);
+        musicSeparator.setVisible(false);
+        jScrollPane1.setVisible(false);
+    }//GEN-LAST:event_advSearchButtonActionPerformed
+
+    private void advSearchPannleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advSearchPannleButtonActionPerformed
+        String searchOpt;
+        String searchTerm;
+        
+        searchOpt =  String.valueOf(jComboBox1.getSelectedItem());
+        searchTerm = jTextField3.getText();
+        
+        if(searchOpt.contains("Artist")){
+            try { 
+                //APIConnections.getSongs(APIConnections.GET_ARTIST, searchTerm);
+                musicButton.doClick();
+            } catch (Exception ex) {
+                Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(searchOpt.contains("Album")){
+            try { 
+                //APIConnections.getSongs(APIConnections.GET_ALBUM, searchTerm);
+                musicButton.doClick();
+            } catch (Exception ex) {
+                Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(searchOpt.contains("Song Name")){
+            try { 
+                //APIConnections.getSongs(APIConnections.GET_TITLE, searchTerm);
+                musicButton.doClick();
+            } catch (Exception ex) {
+                Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }//GEN-LAST:event_advSearchPannleButtonActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -808,6 +910,8 @@ public class MainjFrame extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addSongButton;
+    private javax.swing.JButton advSearchButton;
+    private javax.swing.JButton advSearchPannleButton;
     private javax.swing.JButton createNewPlaylistButton;
     private javax.swing.JButton jButtonSubimtSong;
     private javax.swing.JButton jButtonSubmitPlaylist;
