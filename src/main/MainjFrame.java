@@ -22,6 +22,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -344,7 +345,7 @@ public class MainjFrame extends javax.swing.JFrame{
             }
         });
 
-        jPanel1.setLayout(new java.awt.GridLayout(0, 4));
+        jPanel1.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane1.setViewportView(jPanel1);
 
         songTitleLbl.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
@@ -793,10 +794,23 @@ public class MainjFrame extends javax.swing.JFrame{
                // TODO: create list of songs to display and populate it with the getSongs search
                //test = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText()) ;
                musicButton.doClick();
-               JButton newBtn = new JButton(test);
-               jPanel1.add(newBtn);
-               jPanel1.validate();
-               jScrollPane1.validate();
+               
+               musicButton.doClick();
+               ArrayList<Song> results = new ArrayList<Song>();
+               results = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText());
+               
+               jPanel1.removeAll();
+               jPanel1.revalidate();
+               jPanel1.repaint();
+               for(int i = 0; i < results.size(); i++)
+               {
+                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    jPanel1.add(newBtn);
+                    jPanel1.validate();
+                    jScrollPane1.validate();  
+                    
+               }                        
+            
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -848,6 +862,20 @@ public class MainjFrame extends javax.swing.JFrame{
             try { 
                 //APIConnections.getSongs(APIConnections.GET_ARTIST, searchTerm);
                 musicButton.doClick();
+                ArrayList<Song> results = new ArrayList<Song>();
+                results = APIConnections.getSongs(APIConnections.GET_ARTIST, searchTerm);
+               
+                jPanel1.removeAll();
+                jPanel1.revalidate();
+                jPanel1.repaint();
+                for(int i = 0; i < results.size(); i++)
+                {
+                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    jPanel1.add(newBtn);
+                    jPanel1.validate();
+                    jScrollPane1.validate();  
+                    
+                }
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -856,6 +884,20 @@ public class MainjFrame extends javax.swing.JFrame{
             try { 
                 //APIConnections.getSongs(APIConnections.GET_ALBUM, searchTerm);
                 musicButton.doClick();
+                ArrayList<Song> results = new ArrayList<Song>();
+                results = APIConnections.getSongs(APIConnections.GET_ALBUM, searchTerm);
+               
+                jPanel1.removeAll();
+                jPanel1.revalidate();
+                jPanel1.repaint();
+                for(int i = 0; i < results.size(); i++)
+                {
+                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    jPanel1.add(newBtn);
+                    jPanel1.validate();
+                    jScrollPane1.validate();  
+                    
+                }
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -864,6 +906,20 @@ public class MainjFrame extends javax.swing.JFrame{
             try { 
                 //APIConnections.getSongs(APIConnections.GET_TITLE, searchTerm);
                 musicButton.doClick();
+                ArrayList<Song> results = new ArrayList<Song>();
+                results = APIConnections.getSongs(APIConnections.GET_TITLE, searchTerm);
+               
+                jPanel1.removeAll();
+                jPanel1.revalidate();
+                jPanel1.repaint();
+                for(int i = 0; i < results.size(); i++)
+                {
+                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    jPanel1.add(newBtn);
+                    jPanel1.validate();
+                    jScrollPane1.validate();  
+                    
+                }
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
