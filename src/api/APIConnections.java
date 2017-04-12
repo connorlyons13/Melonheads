@@ -18,7 +18,7 @@ import main.Song;
  */
 public class APIConnections {
     
-    private static final String address = "http://<IP_ADDRESS>";
+    private static final String address = "http://54.227.171.79";
     public static final int GET_SEARCH = 0, GET_TITLE = 1, GET_ARTIST = 2, GET_ALBUM = 3;
     public static final String SRC_YOUTUBE = "youtube";
     

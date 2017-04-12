@@ -552,8 +552,8 @@ public class MainjFrame extends javax.swing.JFrame{
         jLabel3.setText("Source:");
         jComboBox1.setVisible(true);
         jComboBox1.removeAllItems();
-        jComboBox1.addItem("YouTube");
-        jComboBox1.addItem("SoundCloud");
+        jComboBox1.addItem("youtube");
+        jComboBox1.addItem("soundCloud-NOT YET");
         jLabel4.setVisible(true);
         jLabel5.setVisible(true);
         jLabel6.setVisible(true);
@@ -705,7 +705,16 @@ public class MainjFrame extends javax.swing.JFrame{
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButtonSubimtSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubimtSongActionPerformed
-        //SUBMIT button for adding a new song
+        try {
+            //SUBMIT button for adding a new song
+                String title = jTextField3.getText();
+                title = title.replaceAll(" ", "%20");
+                String artist = jTextField4.getText().replaceAll(" ","%20");
+                String album = jTextField2.getText().replaceAll(" ","%20");
+                APIConnections.createSong(title, artist, jTextField5.getText(), album, jComboBox1.getSelectedItem().toString());
+        } catch (Exception ex) {
+            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonSubimtSongActionPerformed
 
     private void jButtonSubmitPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitPlaylistActionPerformed
@@ -797,7 +806,7 @@ public class MainjFrame extends javax.swing.JFrame{
                
                musicButton.doClick();
                ArrayList<Song> results = new ArrayList<Song>();
-               results = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText());
+               results = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText().replaceAll(" ","%20"));
                
                jPanel1.removeAll();
                jPanel1.revalidate();
