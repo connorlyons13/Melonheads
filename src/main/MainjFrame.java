@@ -7,11 +7,9 @@ package main;
 
 //imports here
 import api.APIConnections;
-import static api.APIConnections.GET_ALBUM;
-import static api.APIConnections.GET_TITLE;
+import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
+import java.awt.BorderLayout;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,8 +23,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import sun.applet.Main;
 
 
 
@@ -38,8 +34,8 @@ import sun.applet.Main;
  */
 public class MainjFrame extends javax.swing.JFrame{
     
-    JPanel layoutPanel = new JPanel(new GridLayout(0,4));
-
+    private JWebBrowser webBrowser;
+    
     /**
      * Creates new form SeniorProjV2jFrame
      */
@@ -69,6 +65,9 @@ public class MainjFrame extends javax.swing.JFrame{
         jLabel4.setText("Song title:");
         jLabel5.setText("artist:");
         jLabel6.setText("album (optional):");
+        webBrowser = new JWebBrowser(JWebBrowser.destroyOnFinalization());
+        webBrowser.setBarsVisible(false);
+        playPnl.add(webBrowser, BorderLayout.CENTER);
         
         //FlowLayout playlistLayout = new FlowLayout();
         
@@ -457,16 +456,7 @@ public class MainjFrame extends javax.swing.JFrame{
                 .addComponent(jScrollPane1))
         );
 
-        javax.swing.GroupLayout playPnlLayout = new javax.swing.GroupLayout(playPnl);
-        playPnl.setLayout(playPnlLayout);
-        playPnlLayout.setHorizontalGroup(
-            playPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        playPnlLayout.setVerticalGroup(
-            playPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 25, Short.MAX_VALUE)
-        );
+        playPnl.setLayout(new java.awt.BorderLayout());
 
         advSearchButton.setText("Advanced Search");
         advSearchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -530,8 +520,8 @@ public class MainjFrame extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playSongButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(playPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(playPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -936,11 +926,20 @@ public class MainjFrame extends javax.swing.JFrame{
         
     }//GEN-LAST:event_advSearchPannleButtonActionPerformed
 
+    private boolean playSong(Song song) {
+        if(song.getSource().equals("youtube")) {
+            webBrowser.navigate("https://www.youtube.com/v/" + song.getId() + "&autoplay=1&autohide=0");
+        }
+        else {
+            // no play info for other sources yet
+        }
+        return true;
+    }
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void start() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
