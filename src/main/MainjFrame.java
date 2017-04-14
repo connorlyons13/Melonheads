@@ -23,6 +23,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 
@@ -697,11 +698,16 @@ public class MainjFrame extends javax.swing.JFrame{
     private void jButtonSubimtSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubimtSongActionPerformed
         try {
             //SUBMIT button for adding a new song
-                String title = jTextField3.getText();
-                title = title.replaceAll(" ", "%20");
+                String title = jTextField3.getText().replaceAll(" ", "%20");
                 String artist = jTextField4.getText().replaceAll(" ","%20");
-                String album = jTextField2.getText().replaceAll(" ","%20");
-                APIConnections.createSong(title, artist, jTextField5.getText(), album, jComboBox1.getSelectedItem().toString());
+                String album = jTextField5.getText().replaceAll(" ","%20");
+                APIConnections.createSong(title, artist, album, jTextField2.getText(), jComboBox1.getSelectedItem().toString());
+                JOptionPane.showMessageDialog(null,"add complete", "Submit Complete", JOptionPane.INFORMATION_MESSAGE);
+                jTextField3.setText(" ");
+                jTextField4.setText(" ");
+                jTextField5.setText(" ");
+                jTextField2.setText(" ");
+                
         } catch (Exception ex) {
             Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
