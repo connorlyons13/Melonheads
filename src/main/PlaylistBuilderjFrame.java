@@ -19,6 +19,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import api.APIConnections;
+import java.util.ArrayList;
 /**
  *
  * @author Carson Murray
@@ -42,7 +44,6 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        logoLabel = new javax.swing.JLabel();
         meloLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPaneSongDisplay = new javax.swing.JScrollPane();
@@ -62,9 +63,6 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
 
         jPanel1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
-        logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seniorprojv2/Melonheads50by50.png"))); // NOI18N
-
         meloLabel.setBackground(new java.awt.Color(255, 255, 255));
         meloLabel.setFont(new java.awt.Font("Bebas Neue", 0, 40)); // NOI18N
         meloLabel.setForeground(new java.awt.Color(0, 0, 255));
@@ -80,11 +78,9 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(66, 66, 66)
                 .addComponent(meloLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -94,25 +90,12 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(meloLabel)
-                        .addComponent(logoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(meloLabel))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanelSongDisplay.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        javax.swing.GroupLayout jPanelSongDisplayLayout = new javax.swing.GroupLayout(jPanelSongDisplay);
-        jPanelSongDisplay.setLayout(jPanelSongDisplayLayout);
-        jPanelSongDisplayLayout.setHorizontalGroup(
-            jPanelSongDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1217, Short.MAX_VALUE)
-        );
-        jPanelSongDisplayLayout.setVerticalGroup(
-            jPanelSongDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 322, Short.MAX_VALUE)
-        );
-
+        jPanelSongDisplay.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPaneSongDisplay.setViewportView(jPanelSongDisplay);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -141,15 +124,15 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(85, 85, 85)
                 .addComponent(jLabel3)
-                .addGap(93, 93, 93)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(109, 109, 109)
+                .addGap(90, 90, 90)
                 .addComponent(jLabel5)
-                .addGap(114, 114, 114)
+                .addGap(99, 99, 99)
                 .addComponent(jLabel6)
-                .addGap(86, 86, 86))
+                .addGap(26, 26, 26))
             .addComponent(jSeparator2)
         );
         jPanel3Layout.setVerticalGroup(
@@ -202,7 +185,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,15 +210,31 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             String test = null;
             try {
-                test = getSong(jTextFieldSearch.getText()) ;
-                JButton newBtn = new JButton(test);
-                jPanelSongDisplay.add(newBtn);
-                jPanelSongDisplay.validate();
-                jScrollPaneSongDisplay.validate();
+               // TODO: create list of songs to display and populate it with the getSongs search
+               //test = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText()) ;
+               //musicButton.doClick();
+               
+               //musicButton.doClick();
+               ArrayList<Song> results = new ArrayList<Song>();
+               results = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText().replaceAll(" ","%20"));
+               
+               jPanelSongDisplay.removeAll();
+               jPanelSongDisplay.revalidate();
+               jPanelSongDisplay.repaint();
+               for(int i = 0; i < results.size(); i++)
+               {
+                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    jPanelSongDisplay.add(newBtn);
+                    jPanelSongDisplay.validate();
+                    jScrollPaneSongDisplay.validate();  
+                    
+               }                        
+               
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println(test);
+            
+             
         };
 
     }//GEN-LAST:event_jTextFieldSearchKeyPressed
@@ -307,7 +306,6 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextFieldSearch;
-    private javax.swing.JLabel logoLabel;
     private javax.swing.JLabel meloLabel;
     // End of variables declaration//GEN-END:variables
 }
