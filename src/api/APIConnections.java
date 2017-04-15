@@ -20,8 +20,7 @@ import main.Playlist;
  */
 public class APIConnections {
     
-	private static final String address = "http://localhost";
-    //private static final String address = "http://54.227.171.79";
+    private static final String address = "http://54.227.171.79";
     public static final int GET_SEARCH = 0, GET_TITLE = 1, GET_ARTIST = 2, GET_ALBUM = 3;
     public static final String SRC_YOUTUBE = "youtube";
     
@@ -102,39 +101,47 @@ public class APIConnections {
     }
     
     public static Song updateSong(int id, String title, String artist, String album, String url, String src) throws Exception {
-        URL object;
-        object = new URL(address + "/songs/update");
-	HttpURLConnection con = (HttpURLConnection) object.openConnection();
-	con.setDoOutput(true);
-	con.setDoInput(true);
-	con.setRequestProperty("Content-Type", "application/json");
-	con.setRequestProperty("Accept", "application/json");
-	con.setRequestMethod("PUT");
-        
-        // create json of song information to send to the API
-	String input = "{ \"id\": " + id + ", \"title\": \"" + title + "\", \"artist\": \"" + artist
-            + "\", \"album\": \"" + album + "\", \"url\": \"" + url +"\", \"src\": \"" + src + "\" }";
-
-	OutputStream os = con.getOutputStream();
-	os.write(input.getBytes());
-	os.flush();
-
-	StringBuilder sb = new StringBuilder();  
-	int HttpResult = con.getResponseCode(); 
-	if (HttpResult == HttpURLConnection.HTTP_OK) {
-            BufferedReader br = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), "utf-8"));
-            String line = null;  
-            while ((line = br.readLine()) != null) {  
-                sb.append(line + "\n");  
-            }
-            br.close();
-            Gson gson = new Gson();
-            return gson.fromJson(sb.toString(), Song.class); // parse JSON response to Song object
-	} else {
-            return null; // client will know that the endpoint was not reached
-	}  
-    }
+         // if the source is youtube, we only need the video id from the url
+        if(src.equals(SRC_YOUTUBE)) {
+            String videoId = getYoutubeVideoId(url);
+            if (videoId.equals("")) {
+                throw new InvalidYoutubeVideoUrlException();
+            } else
+                url = videoId;
+        }
+          URL object;
+          object = new URL(address + "/songs/update");
+  	HttpURLConnection con = (HttpURLConnection) object.openConnection();
+ 	con.setDoOutput(true);
+ 	con.setDoInput(true);
+ 	con.setRequestProperty("Content-Type", "application/json");
+ 	con.setRequestProperty("Accept", "application/json");
+ 	con.setRequestMethod("PUT");
+         
+         // create json of song information to send to the API
+ 	String input = "{ \"id\": " + id + ", \"title\": \"" + title + "\", \"artist\": \"" + artist
+             + "\", \"album\": \"" + album + "\", \"url\": \"" + url +"\", \"src\": \"" + src + "\" }";
+ 
+ 	OutputStream os = con.getOutputStream();
+ 	os.write(input.getBytes());
+ 	os.flush();
+ 
+ 	StringBuilder sb = new StringBuilder();  
+ 	int HttpResult = con.getResponseCode(); 
+ 	if (HttpResult == HttpURLConnection.HTTP_OK) {
+             BufferedReader br = new BufferedReader(
+                 new InputStreamReader(con.getInputStream(), "utf-8"));
+             String line = null;  
+             while ((line = br.readLine()) != null) {  
+                 sb.append(line + "\n");  
+             }
+             br.close();
+             Gson gson = new Gson();
+             return gson.fromJson(sb.toString(), Song.class); // parse JSON response to Song object
+ 	} else {
+             return null; // client will know that the endpoint was not reached
+ 	}  
+     }
     
     public static boolean deleteSong(int id) throws Exception {
         URL object;
