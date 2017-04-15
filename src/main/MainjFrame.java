@@ -91,6 +91,7 @@ public class MainjFrame extends javax.swing.JFrame{
 
                 newBtn.addActionListener(new ActionListener(){
                     public void actionPerformed(ActionEvent ae2){
+                        
                         jLabel2.setVisible(false);
                         jLabel3.setVisible(false);
                         jLabel4.setVisible(false);
@@ -109,7 +110,9 @@ public class MainjFrame extends javax.swing.JFrame{
                         songPlaysLbl.setVisible(true);
                         musicSeparator.setVisible(true);
                         jScrollPane1.setVisible(true);
+                        playEditButton.setVisible(true);
                         jLabelSelectedMenu.setText(newBtn.getText());
+                        
                         //Then populate with music from that playlist
                     }
                 });
@@ -775,12 +778,13 @@ public class MainjFrame extends javax.swing.JFrame{
                 musicSeparator.setVisible(true);
                 jScrollPane1.setVisible(true);
                 jLabelSelectedMenu.setText(newBtn.getText());
-                playEditButton.setVisible(false);
+                playEditButton.setVisible(true);
                 //Then populate with music from that playlist
             }
         });
         
          try {
+             
             File playlists = new File("playlists/playlist.txt");
             FileWriter fileWriter = new FileWriter(playlists, true);
             PrintWriter playlistWriter = new PrintWriter(fileWriter, true);
@@ -960,7 +964,7 @@ public class MainjFrame extends javax.swing.JFrame{
 
     private void playEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playEditButtonActionPerformed
        //Need to get whatever playlist is open to pass info to the playlist buiderframe
-             PlaylistBuilderjFrame PlaylistBuiderFrame = new PlaylistBuilderjFrame();
+             PlaylistBuilderjFrame PlaylistBuiderFrame = new PlaylistBuilderjFrame( null,jLabelSelectedMenu.getText());
              PlaylistBuiderFrame.setVisible(true);
        
        
