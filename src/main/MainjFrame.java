@@ -28,6 +28,7 @@ import javax.swing.JOptionPane;
 
 
 
+
 /**
  *
  * @author Connor
@@ -69,6 +70,8 @@ public class MainjFrame extends javax.swing.JFrame{
         webBrowser = new JWebBrowser(JWebBrowser.destroyOnFinalization());
         webBrowser.setBarsVisible(false);
         playPnl.add(webBrowser, BorderLayout.CENTER);
+        playEditButton.setVisible(false);
+        
         
         //FlowLayout playlistLayout = new FlowLayout();
         
@@ -173,6 +176,7 @@ public class MainjFrame extends javax.swing.JFrame{
         songAlbumLbl = new javax.swing.JLabel();
         songPlaysLbl = new javax.swing.JLabel();
         advSearchPannleButton = new javax.swing.JButton();
+        playEditButton = new javax.swing.JButton();
         playPnl = new javax.swing.JPanel();
         advSearchButton = new javax.swing.JButton();
 
@@ -368,12 +372,22 @@ public class MainjFrame extends javax.swing.JFrame{
             }
         });
 
+        playEditButton.setText("Playlist Editer");
+        playEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playEditButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator4)
-            .addComponent(jLabelSelectedMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabelSelectedMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(playEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(musicSeparator)
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -417,7 +431,11 @@ public class MainjFrame extends javax.swing.JFrame{
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabelSelectedMenu)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelSelectedMenu)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(playEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -563,6 +581,7 @@ public class MainjFrame extends javax.swing.JFrame{
         musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
+        playEditButton.setVisible(false);
     }//GEN-LAST:event_addSongButtonActionPerformed
 
     private void myPlaylistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myPlaylistsButtonActionPerformed
@@ -587,6 +606,7 @@ public class MainjFrame extends javax.swing.JFrame{
         musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
+        playEditButton.setVisible(true);
     }//GEN-LAST:event_myPlaylistsButtonActionPerformed
 
     private void musicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicButtonActionPerformed
@@ -611,6 +631,7 @@ public class MainjFrame extends javax.swing.JFrame{
         musicSeparator.setVisible(true);
         jScrollPane1.setVisible(true);
         advSearchPannleButton.setVisible(false);
+        playEditButton.setVisible(false);
     }//GEN-LAST:event_musicButtonActionPerformed
 
     private void createNewPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewPlaylistButtonActionPerformed
@@ -641,6 +662,7 @@ public class MainjFrame extends javax.swing.JFrame{
         musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
+        playEditButton.setVisible(false);
     }//GEN-LAST:event_createNewPlaylistButtonActionPerformed
 
     private void popularPlaylistsButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popularPlaylistsButton3ActionPerformed
@@ -665,6 +687,7 @@ public class MainjFrame extends javax.swing.JFrame{
         musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
+        playEditButton.setVisible(false);
     }//GEN-LAST:event_popularPlaylistsButton3ActionPerformed
 
     private void newAdditionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAdditionsButtonActionPerformed
@@ -689,6 +712,7 @@ public class MainjFrame extends javax.swing.JFrame{
         musicSeparator.setVisible(true);
         jScrollPane1.setVisible(true);
         advSearchPannleButton.setVisible(false);
+        playEditButton.setVisible(false);
     }//GEN-LAST:event_newAdditionsButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -751,6 +775,7 @@ public class MainjFrame extends javax.swing.JFrame{
                 musicSeparator.setVisible(true);
                 jScrollPane1.setVisible(true);
                 jLabelSelectedMenu.setText(newBtn.getText());
+                playEditButton.setVisible(false);
                 //Then populate with music from that playlist
             }
         });
@@ -854,6 +879,7 @@ public class MainjFrame extends javax.swing.JFrame{
         songPlaysLbl.setVisible(false);
         musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
+        playEditButton.setVisible(false);
     }//GEN-LAST:event_advSearchButtonActionPerformed
 
     private void advSearchPannleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advSearchPannleButtonActionPerformed
@@ -931,6 +957,14 @@ public class MainjFrame extends javax.swing.JFrame{
         }
         
     }//GEN-LAST:event_advSearchPannleButtonActionPerformed
+
+    private void playEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playEditButtonActionPerformed
+       //Need to get whatever playlist is open to pass info to the playlist buiderframe
+             PlaylistBuilderjFrame PlaylistBuiderFrame = new PlaylistBuilderjFrame();
+             PlaylistBuiderFrame.setVisible(true);
+       
+       
+    }//GEN-LAST:event_playEditButtonActionPerformed
 
     private boolean playSong(Song song) {
         if(song.getSource().equals("youtube")) {
@@ -1013,6 +1047,7 @@ public class MainjFrame extends javax.swing.JFrame{
     private javax.swing.JSeparator musicSeparator;
     private javax.swing.JButton myPlaylistsButton;
     private javax.swing.JButton newAdditionsButton;
+    private javax.swing.JButton playEditButton;
     private javax.swing.JPanel playPnl;
     private javax.swing.JButton playSongButton;
     private javax.swing.JButton popularPlaylistsButton3;
