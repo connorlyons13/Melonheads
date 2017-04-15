@@ -635,12 +635,12 @@ public class MainjFrame extends javax.swing.JFrame{
         jLabel2.setText("Playlist name:");
         jTextField2.setVisible(true);
         jTextField2.setText("");
-        jLabel3.setVisible(true);
-        jLabel3.setText("Playlist public or private?");
-        jComboBox1.setVisible(true);
-        jComboBox1.removeAllItems();
-        jComboBox1.addItem("Public");
-        jComboBox1.addItem("Private");
+        //jLabel3.setVisible(true);
+        //jLabel3.setText("Playlist public or private?");
+        //jComboBox1.setVisible(true);
+        //jComboBox1.removeAllItems();
+        //jComboBox1.addItem("Public");
+        //jComboBox1.addItem("Private");
         jLabel4.setVisible(false);
         jLabel5.setVisible(false);
         jLabel6.setVisible(false);
@@ -847,9 +847,17 @@ public class MainjFrame extends javax.swing.JFrame{
                for(int i = 0; i < results.size(); i++)
                {
                     JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    final Song s = results.get(i);
                     jPanel1.add(newBtn);
                     jPanel1.validate();
-                    jScrollPane1.validate();  
+                    jScrollPane1.validate();
+                    newBtn.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent ae3){
+                            //Song s = new Song();
+                            System.out.println(s.getId());
+                            playSong(s);
+                        }
+                    });
                     
                }                        
             
@@ -980,7 +988,7 @@ public class MainjFrame extends javax.swing.JFrame{
 
     private boolean playSong(Song song) {
         if(song.getSource().equals("youtube")) {
-            webBrowser.navigate("https://www.youtube.com/v/" + song.getId() + "&autoplay=1&autohide=0");
+            webBrowser.navigate("https://www.youtube.com/v/" + song.getURL() + "&autoplay=1&autohide=0");
         }
         else {
             // no play info for other sources yet
