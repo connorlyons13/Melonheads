@@ -155,7 +155,6 @@ public class MainjFrame extends javax.swing.JFrame{
         addSongButton = new javax.swing.JButton();
         jTextFieldSearch = new javax.swing.JTextField();
         createNewPlaylistButton = new javax.swing.JButton();
-        playSongButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabelSelectedMenu = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
@@ -306,8 +305,6 @@ public class MainjFrame extends javax.swing.JFrame{
                 createNewPlaylistButtonActionPerformed(evt);
             }
         });
-
-        playSongButton.setText("|>");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -491,10 +488,6 @@ public class MainjFrame extends javax.swing.JFrame{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(playSongButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(253, 253, 253))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -539,11 +532,9 @@ public class MainjFrame extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(createNewPlaylistButton))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(playSongButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(playPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(55, 55, 55))
         );
 
         pack();
@@ -725,18 +716,35 @@ public class MainjFrame extends javax.swing.JFrame{
     private void jButtonSubimtSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubimtSongActionPerformed
         try {
             //SUBMIT button for adding a new song
-                String title = jTextField3.getText().replaceAll(" ", "%20");
-                String artist = jTextField4.getText().replaceAll(" ","%20");
-                String album = jTextField5.getText().replaceAll(" ","%20");
+                //String title = jTextField3.getText().replaceAll(" ", "%20");
+                String title = jTextField3.getText();
+                if (title.equals("")) {
+                    throw new NoTitleException();
+                }
+                //String artist = jTextField4.getText().replaceAll(" ","%20");
+                String artist = jTextField4.getText();
+                if (artist.equals("")) {
+                    throw new NoArtistException();
+                }
+                //String album = jTextField5.getText().replaceAll(" ","%20");
+                String album = jTextField5.getText();
+                if (album.equals("")) {
+                    album = " ";
+                }
                 APIConnections.createSong(title, artist, album, jTextField2.getText(), jComboBox1.getSelectedItem().toString());
-                JOptionPane.showMessageDialog(null,"add complete", "Submit Complete", JOptionPane.INFORMATION_MESSAGE);
-                jTextField3.setText(" ");
-                jTextField4.setText(" ");
-                jTextField5.setText(" ");
-                jTextField2.setText(" ");
+                JOptionPane.showMessageDialog(null,"Add complete!", "Submit Complete", JOptionPane.INFORMATION_MESSAGE);
+                jTextField3.setText("");
+                jTextField4.setText("");
+                jTextField5.setText("");
+                jTextField2.setText("");
                 
-        } catch (Exception ex) {
-            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoTitleException ex) {
+            JOptionPane.showMessageDialog(null, "Must add a song title!", null, JOptionPane.INFORMATION_MESSAGE);
+            //Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoArtistException ex2) {
+            JOptionPane.showMessageDialog(null, "Must add artist name!", null, JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex3) {
+            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex3);
         }
     }//GEN-LAST:event_jButtonSubimtSongActionPerformed
 
@@ -1053,7 +1061,6 @@ public class MainjFrame extends javax.swing.JFrame{
     private javax.swing.JButton newAdditionsButton;
     private javax.swing.JButton playEditButton;
     private javax.swing.JPanel playPnl;
-    private javax.swing.JButton playSongButton;
     private javax.swing.JButton popularPlaylistsButton3;
     private javax.swing.JLabel songAlbumLbl;
     private javax.swing.JLabel songArtistLbl;
