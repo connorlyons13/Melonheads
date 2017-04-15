@@ -10,7 +10,7 @@ import javax.swing.SwingUtilities;
 public class Main {
     public static void main(String[] args) {
         
-       // NativeInterface.open();
+        NativeInterface.open();
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 MainjFrame.start();

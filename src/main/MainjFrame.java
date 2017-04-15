@@ -905,11 +905,16 @@ public class MainjFrame extends javax.swing.JFrame{
                 jPanel1.repaint();
                 for(int i = 0; i < results.size(); i++)
                 {
-                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    final Song tempSong = results.get(i);
+                    JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    newBtn.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            playSong(tempSong);
+                        }
+                    });
                     jPanel1.add(newBtn);
                     jPanel1.validate();
-                    jScrollPane1.validate();  
-                    
+                    jScrollPane1.validate();
                 }
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -927,11 +932,16 @@ public class MainjFrame extends javax.swing.JFrame{
                 jPanel1.repaint();
                 for(int i = 0; i < results.size(); i++)
                 {
-                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    final Song tempSong = results.get(i);
+                    JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    newBtn.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            playSong(tempSong);
+                        }
+                    });
                     jPanel1.add(newBtn);
                     jPanel1.validate();
-                    jScrollPane1.validate();  
-                    
+                    jScrollPane1.validate();
                 }
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -949,11 +959,16 @@ public class MainjFrame extends javax.swing.JFrame{
                 jPanel1.repaint();
                 for(int i = 0; i < results.size(); i++)
                 {
-                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    final Song tempSong = results.get(i);
+                    JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    newBtn.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            playSong(tempSong);
+                        }
+                    });
                     jPanel1.add(newBtn);
                     jPanel1.validate();
-                    jScrollPane1.validate();  
-                    
+                    jScrollPane1.validate();
                 }
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
