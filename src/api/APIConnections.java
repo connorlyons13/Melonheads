@@ -99,6 +99,14 @@ public class APIConnections {
     }
     
     public static Song updateSong(int id, String title, String artist, String album, String url, String src) throws Exception {
+        // if the source is youtube, we only need the video id from the url
+        if(src.equals(SRC_YOUTUBE)) {
+            String videoId = getYoutubeVideoId(url);
+            if (videoId.equals("")) {
+                throw new InvalidYoutubeVideoUrlException();
+            } else
+                url = videoId;
+        }
         URL object;
         object = new URL(address + "/songs/update");
 	HttpURLConnection con = (HttpURLConnection) object.openConnection();
