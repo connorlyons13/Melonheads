@@ -839,7 +839,6 @@ public class MainjFrame extends javax.swing.JFrame{
 
     private void jTextFieldSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            String test = null;
             try {
                // TODO: create list of songs to display and populate it with the getSongs search
                //test = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText()) ;
@@ -869,7 +868,6 @@ public class MainjFrame extends javax.swing.JFrame{
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-             System.out.println(test);
         };
         
     }//GEN-LAST:event_jTextFieldSearchKeyPressed
