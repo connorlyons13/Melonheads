@@ -140,6 +140,21 @@ public class MainjFrame extends javax.swing.JFrame{
                                 Song target = APIConnections.getSongs(APIConnections.GET_ID, songLine).get(0);
                                 sButton newSBtn = new sButton(Integer.parseInt(songLine), target.getArtist()+ " - " + target.getTitle() + " - " + target.getAlbum());
                                 newSBtn.setHorizontalAlignment(SwingConstants.LEFT);
+                                
+                                
+                                newSBtn.addActionListener(new ActionListener(){
+                                    public void actionPerformed(ActionEvent addToList){
+                                        playSong(target);
+                                    }
+                                });
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                                 jPanel1.add(newSBtn);
                             }
                             jPanel1.validate();
@@ -685,7 +700,7 @@ public class MainjFrame extends javax.swing.JFrame{
                         //Then populate with music from that playlist
                     }
                 });
-
+                newBtn.setHorizontalAlignment(SwingConstants.LEFT);
                 jPanel1.add(newBtn);
                 jPanel1.validate();
                 jScrollPane1.validate();
@@ -947,6 +962,7 @@ public class MainjFrame extends javax.swing.JFrame{
                {
                     final Song tempSong = results.get(i);
                     JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    newBtn.setHorizontalAlignment(SwingConstants.LEFT);
                     newBtn.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             playSong(tempSong);
@@ -1018,6 +1034,7 @@ public class MainjFrame extends javax.swing.JFrame{
                 {
                     final Song tempSong = results.get(i);
                     JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    newBtn.setHorizontalAlignment(SwingConstants.LEFT);
                     newBtn.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             playSong(tempSong);
@@ -1045,6 +1062,7 @@ public class MainjFrame extends javax.swing.JFrame{
                 {
                     final Song tempSong = results.get(i);
                     JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    newBtn.setHorizontalAlignment(SwingConstants.LEFT);
                     newBtn.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             playSong(tempSong);
@@ -1072,6 +1090,7 @@ public class MainjFrame extends javax.swing.JFrame{
                 {
                     final Song tempSong = results.get(i);
                     JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    newBtn.setHorizontalAlignment(SwingConstants.LEFT);
                     newBtn.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             playSong(tempSong);
