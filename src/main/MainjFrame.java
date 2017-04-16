@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 
 
@@ -136,7 +137,9 @@ public class MainjFrame extends javax.swing.JFrame{
                             BufferedReader songRead = new BufferedReader(new FileReader(songs));
                             while((songLine = songRead.readLine()) != null)
                             {
-                                sButton newSBtn = new sButton(Integer.parseInt(songLine), songLine);
+                                Song target = APIConnections.getSongs(APIConnections.GET_ID, songLine).get(0);
+                                sButton newSBtn = new sButton(Integer.parseInt(songLine), target.getArtist()+ " - " + target.getTitle() + " - " + target.getAlbum());
+                                newSBtn.setHorizontalAlignment(SwingConstants.LEFT);
                                 jPanel1.add(newSBtn);
                             }
                             jPanel1.validate();
@@ -147,6 +150,8 @@ public class MainjFrame extends javax.swing.JFrame{
                         } catch (FileNotFoundException ex) {
                             Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (IOException ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (Exception ex) {
                             Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
