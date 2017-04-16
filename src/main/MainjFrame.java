@@ -7,6 +7,7 @@ package main;
 
 //imports here
 import api.APIConnections;
+import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -14,6 +15,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -81,6 +84,11 @@ public class MainjFrame extends javax.swing.JFrame{
 	int screenWidth = tk.getScreenSize().width;
 	int screenHeight = tk.getScreenSize().height;
 	setLocation(screenWidth/4, screenHeight/5);
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                NativeInterface.close();
+            }
+        });
         
         try {
             File playlists = new File("playlists/playlist.txt");
@@ -533,8 +541,8 @@ public class MainjFrame extends javax.swing.JFrame{
                         .addComponent(createNewPlaylistButton))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(playPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                .addGap(55, 55, 55))
+                .addComponent(playPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -831,7 +839,6 @@ public class MainjFrame extends javax.swing.JFrame{
 
     private void jTextFieldSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            String test = null;
             try {
                // TODO: create list of songs to display and populate it with the getSongs search
                //test = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText()) ;
@@ -846,25 +853,21 @@ public class MainjFrame extends javax.swing.JFrame{
                jPanel1.repaint();
                for(int i = 0; i < results.size(); i++)
                {
-                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
-                    final Song s = results.get(i);
+                    final Song tempSong = results.get(i);
+                    JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    newBtn.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            playSong(tempSong);
+                        }
+                    });
                     jPanel1.add(newBtn);
                     jPanel1.validate();
                     jScrollPane1.validate();
-                    newBtn.addActionListener(new ActionListener(){
-                        public void actionPerformed(ActionEvent ae3){
-                            //Song s = new Song();
-                            System.out.println(s.getId());
-                            playSong(s);
-                        }
-                    });
-                    
                }                        
             
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-             System.out.println(test);
         };
         
     }//GEN-LAST:event_jTextFieldSearchKeyPressed
@@ -921,11 +924,16 @@ public class MainjFrame extends javax.swing.JFrame{
                 jPanel1.repaint();
                 for(int i = 0; i < results.size(); i++)
                 {
-                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    final Song tempSong = results.get(i);
+                    JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    newBtn.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            playSong(tempSong);
+                        }
+                    });
                     jPanel1.add(newBtn);
                     jPanel1.validate();
-                    jScrollPane1.validate();  
-                    
+                    jScrollPane1.validate();
                 }
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -943,11 +951,16 @@ public class MainjFrame extends javax.swing.JFrame{
                 jPanel1.repaint();
                 for(int i = 0; i < results.size(); i++)
                 {
-                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    final Song tempSong = results.get(i);
+                    JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    newBtn.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            playSong(tempSong);
+                        }
+                    });
                     jPanel1.add(newBtn);
                     jPanel1.validate();
-                    jScrollPane1.validate();  
-                    
+                    jScrollPane1.validate();
                 }
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -965,11 +978,16 @@ public class MainjFrame extends javax.swing.JFrame{
                 jPanel1.repaint();
                 for(int i = 0; i < results.size(); i++)
                 {
-                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    final Song tempSong = results.get(i);
+                    JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    newBtn.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            playSong(tempSong);
+                        }
+                    });
                     jPanel1.add(newBtn);
                     jPanel1.validate();
-                    jScrollPane1.validate();  
-                    
+                    jScrollPane1.validate();
                 }
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);

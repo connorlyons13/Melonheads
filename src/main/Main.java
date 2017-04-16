@@ -15,12 +15,7 @@ public class Main {
             public void run() {
                 MainjFrame.start();
                 
-                
-                
-                
             }
         });
-        NativeInterface.initialize();
-        NativeInterface.runEventPump();
     }
 }
