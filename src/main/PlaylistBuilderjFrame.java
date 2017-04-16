@@ -20,6 +20,10 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import api.APIConnections;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 /**
  *
@@ -237,7 +241,26 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                jPanelSongDisplay.repaint();
                for(int i = 0; i < results.size(); i++)
                {
-                    JButton newBtn = new JButton(results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    sButton newBtn = new sButton(results.get(i).getId(), results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    
+                    newBtn.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent addToList){
+                            try{
+                                File newPlaylist = new File("playlists/" + jLabel8.getText() +".txt");
+                                FileWriter fileWriter2 = new FileWriter(newPlaylist, true);
+                                PrintWriter playlistWriter2 = new PrintWriter(fileWriter2, true);
+                                playlistWriter2.println(newBtn.getID());
+                                playlistWriter2.close();
+                            } catch(IOException e)
+                            {
+                                
+                            }
+                        
+                    
+                    }
+                });
+                    
+
                     jPanelSongDisplay.add(newBtn);
                     jPanelSongDisplay.validate();
                     jScrollPaneSongDisplay.validate();  

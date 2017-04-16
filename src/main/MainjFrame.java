@@ -19,6 +19,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -100,6 +101,10 @@ public class MainjFrame extends javax.swing.JFrame{
                 newBtn.addActionListener(new ActionListener(){
                     public void actionPerformed(ActionEvent ae2){
                         
+                        
+                        jPanel1.removeAll();
+                        jPanel1.revalidate();
+                        jPanel1.repaint();
                         jLabel2.setVisible(false);
                         jLabel3.setVisible(false);
                         jLabel4.setVisible(false);
@@ -120,8 +125,25 @@ public class MainjFrame extends javax.swing.JFrame{
                         jScrollPane1.setVisible(true);
                         playEditButton.setVisible(true);
                         jLabelSelectedMenu.setText(newBtn.getText());
-                        
-                        //Then populate with music from that playlist
+                        String songLine;
+                        File songs = new File("playlists/" + newBtn.getText() + ".txt");
+                        try {
+                            BufferedReader songRead = new BufferedReader(new FileReader(songs));
+                            while((songLine = songRead.readLine()) != null)
+                            {
+                                sButton newSBtn = new sButton(Integer.parseInt(songLine), songLine);
+                                jPanel1.add(newSBtn);
+                            }
+                            jPanel1.validate();
+                            jPanel1.repaint();
+                            jScrollPane1.validate();
+                            jScrollPane1.repaint();
+                            //Then populate with music from that playlist
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IOException ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 });
 
