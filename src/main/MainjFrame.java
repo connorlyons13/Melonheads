@@ -19,6 +19,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -90,8 +91,10 @@ public class MainjFrame extends javax.swing.JFrame{
             }
         });
         
+        File playlists = new File("src/data/playlist.txt");
         try {
-            File playlists = new File("playlists/playlist.txt");
+            //File playlists = new File("src/data/playlist.txt");
+            //playlists.mkdir();
             BufferedReader reader = new BufferedReader(new FileReader(playlists));
             String line;
             while((line = reader.readLine()) != null){
@@ -100,6 +103,13 @@ public class MainjFrame extends javax.swing.JFrame{
                 newBtn.addActionListener(new ActionListener(){
                     public void actionPerformed(ActionEvent ae2){
                         
+                        jPanel1.removeAll();
+                        jPanel1.revalidate();
+                        
+                        
+                        jPanel1.removeAll();
+                        jPanel1.revalidate();
+                        jPanel1.repaint();
                         jLabel2.setVisible(false);
                         jLabel3.setVisible(false);
                         jLabel4.setVisible(false);
@@ -120,8 +130,25 @@ public class MainjFrame extends javax.swing.JFrame{
                         jScrollPane1.setVisible(true);
                         playEditButton.setVisible(true);
                         jLabelSelectedMenu.setText(newBtn.getText());
-                        
-                        //Then populate with music from that playlist
+                        String songLine;
+                        File songs = new File("playlists/" + newBtn.getText() + ".txt");
+                        try {
+                            BufferedReader songRead = new BufferedReader(new FileReader(songs));
+                            while((songLine = songRead.readLine()) != null)
+                            {
+                                sButton newSBtn = new sButton(Integer.parseInt(songLine), songLine);
+                                jPanel1.add(newSBtn);
+                            }
+                            jPanel1.validate();
+                            jPanel1.repaint();
+                            jScrollPane1.validate();
+                            jScrollPane1.repaint();
+                            //Then populate with music from that playlist
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IOException ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 });
 
@@ -372,7 +399,7 @@ public class MainjFrame extends javax.swing.JFrame{
         songPlaysLbl.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
         songPlaysLbl.setText("plays");
 
-        advSearchPannleButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        advSearchPannleButton.setFont(new java.awt.Font("Bebas Neue", 0, 24)); // NOI18N
         advSearchPannleButton.setText("Search");
         advSearchPannleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -380,7 +407,8 @@ public class MainjFrame extends javax.swing.JFrame{
             }
         });
 
-        playEditButton.setText("Playlist Editer");
+        playEditButton.setFont(new java.awt.Font("Bebas Neue", 0, 16)); // NOI18N
+        playEditButton.setText("Playlist Editor");
         playEditButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playEditButtonActionPerformed(evt);
@@ -426,25 +454,23 @@ public class MainjFrame extends javax.swing.JFrame{
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(songTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(40, 40, 40)
                         .addComponent(songArtistLbl)
-                        .addGap(92, 92, 92)
+                        .addGap(61, 61, 61)
+                        .addComponent(songTitleLbl)
+                        .addGap(69, 69, 69)
                         .addComponent(songAlbumLbl)
-                        .addGap(96, 96, 96)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(songPlaysLbl)
-                        .addGap(18, 18, 18))))
+                        .addGap(25, 25, 25))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelSelectedMenu)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(playEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelSelectedMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(playEditButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(9, 9, 9)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -608,7 +634,62 @@ public class MainjFrame extends javax.swing.JFrame{
         musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
-        playEditButton.setVisible(true);
+        playEditButton.setVisible(false);
+        jPanel1.setVisible(true);
+        jScrollPane1.setVisible(true);
+        
+        jPanel1.removeAll();
+        jPanel1.revalidate();
+        
+        File playlists = new File("src/data/playlist.txt");
+        try {
+            //File playlists = new File("src/data/playlist.txt");
+            //playlists.mkdir();
+            BufferedReader reader = new BufferedReader(new FileReader(playlists));
+            String line;
+            while((line = reader.readLine()) != null){
+                JButton newBtn = new JButton(line);
+
+                newBtn.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent ae2){
+                        
+                        jPanel1.removeAll();
+                        jPanel1.revalidate();
+                        
+                        jLabel2.setVisible(false);
+                        jLabel3.setVisible(false);
+                        jLabel4.setVisible(false);
+                        jLabel5.setVisible(false);
+                        jLabel6.setVisible(false);
+                        jTextField2.setVisible(false);
+                        jTextField3.setVisible(false);
+                        jTextField4.setVisible(false);
+                        jTextField5.setVisible(false);
+                        jComboBox1.setVisible(false);
+                        jButtonSubimtSong.setVisible(false);
+                        jButtonSubmitPlaylist.setVisible(false);
+                        songTitleLbl.setVisible(true);
+                        songArtistLbl.setVisible(true);
+                        songAlbumLbl.setVisible(true);
+                        songPlaysLbl.setVisible(true);
+                        musicSeparator.setVisible(true);
+                        jScrollPane1.setVisible(true);
+                        playEditButton.setVisible(true);
+                        jLabelSelectedMenu.setText(newBtn.getText());
+                        
+                        //Then populate with music from that playlist
+                    }
+                });
+
+                jPanel1.add(newBtn);
+                jPanel1.validate();
+                jScrollPane1.validate();
+            
+            }
+        }catch(IOException e)
+        {
+            
+        }
     }//GEN-LAST:event_myPlaylistsButtonActionPerformed
 
     private void musicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicButtonActionPerformed
@@ -634,6 +715,9 @@ public class MainjFrame extends javax.swing.JFrame{
         jScrollPane1.setVisible(true);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
+        
+        jPanel1.removeAll();
+        jPanel1.revalidate();
     }//GEN-LAST:event_musicButtonActionPerformed
 
     private void createNewPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewPlaylistButtonActionPerformed
@@ -643,12 +727,12 @@ public class MainjFrame extends javax.swing.JFrame{
         jLabel2.setText("Playlist name:");
         jTextField2.setVisible(true);
         jTextField2.setText("");
-        jLabel3.setVisible(true);
-        jLabel3.setText("Playlist public or private?");
-        jComboBox1.setVisible(true);
-        jComboBox1.removeAllItems();
-        jComboBox1.addItem("Public");
-        jComboBox1.addItem("Private");
+        //jLabel3.setVisible(true);
+        //jLabel3.setText("Playlist public or private?");
+        //jComboBox1.setVisible(true);
+        //jComboBox1.removeAllItems();
+        //jComboBox1.addItem("Public");
+        //jComboBox1.addItem("Private");
         jLabel4.setVisible(false);
         jLabel5.setVisible(false);
         jLabel6.setVisible(false);
@@ -690,6 +774,9 @@ public class MainjFrame extends javax.swing.JFrame{
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
+        
+        jPanel1.removeAll();
+        jPanel1.revalidate();
     }//GEN-LAST:event_popularPlaylistsButton3ActionPerformed
 
     private void newAdditionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAdditionsButtonActionPerformed
@@ -801,13 +888,13 @@ public class MainjFrame extends javax.swing.JFrame{
         
          try {
              
-            File playlists = new File("playlists/playlist.txt");
+            File playlists = new File("src/data/playlist.txt");
             FileWriter fileWriter = new FileWriter(playlists, true);
             PrintWriter playlistWriter = new PrintWriter(fileWriter, true);
             playlistWriter.println(jTextField2.getText());
             playlistWriter.close();
             
-            File newPlaylist = new File("playlists/" + jTextField2.getText() +".txt");
+            File newPlaylist = new File("src/data/" + jTextField2.getText() +".txt");
             FileWriter fileWriter2 = new FileWriter(newPlaylist, true);
             PrintWriter playlistWriter2 = new PrintWriter(fileWriter2, true);
             playlistWriter2.println("1");
