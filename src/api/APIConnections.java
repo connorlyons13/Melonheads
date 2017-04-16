@@ -21,27 +21,30 @@ import main.Playlist;
 public class APIConnections {
     
     private static final String address = "http://54.227.171.79";
-    public static final int GET_SEARCH = 0, GET_TITLE = 1, GET_ARTIST = 2, GET_ALBUM = 3;
+    public static final int GET_SEARCH = 0, GET_ID = 1, GET_TITLE = 2, GET_ARTIST = 3, GET_ALBUM = 4;
     public static final String SRC_YOUTUBE = "youtube";
     
-    public static ArrayList<Song> getSongs(int getType, String seachTerm) throws Exception {
+    public static ArrayList<Song> getSongs(int getType, String searchTerm) throws Exception {
       StringBuilder result = new StringBuilder();
       URL url = null;
       switch(getType) {
           case GET_SEARCH:
-              url = new URL(address + "/songs/search/" + seachTerm);
+              url = new URL(address + "/songs/search/" + searchTerm);
+              break;
+          case GET_ID:
+              url = new URL(address + "/songs/id/" + searchTerm);
               break;
           case GET_TITLE:
-              url = new URL(address + "/songs/title/" + seachTerm);
+              url = new URL(address + "/songs/title/" + searchTerm);
               break;
           case GET_ARTIST:
-              url = new URL(address + "/songs/artist/" + seachTerm);
+              url = new URL(address + "/songs/artist/" + searchTerm);
               break;
           case GET_ALBUM:
-              url = new URL(address + "/songs/album/" + seachTerm);
+              url = new URL(address + "/songs/album/" + searchTerm);
               break;
           default:
-              url = new URL(address + "/songs/search/" + seachTerm);
+              url = new URL(address + "/songs/search/" + searchTerm);
               break;
       }
       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
