@@ -138,8 +138,6 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("jLabel7");
-
         jLabel9.setFont(new java.awt.Font("Bebas Neue", 0, 40)); // NOI18N
         jLabel9.setText("Melonheads");
         jLabel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 0), new java.awt.Color(51, 153, 0), new java.awt.Color(51, 153, 0), new java.awt.Color(51, 153, 0)));

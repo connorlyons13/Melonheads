@@ -10,6 +10,7 @@ import api.APIConnections;
 import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -27,6 +28,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
@@ -42,12 +44,15 @@ import javax.swing.SwingConstants;
 public class MainjFrame extends javax.swing.JFrame{
     
     private JWebBrowser webBrowser;
+    private GridLayout grd1col = new GridLayout(0, 1);
+    private GridLayout grd3col = new GridLayout(0, 5);
     
     /**
      * Creates new form SeniorProjV2jFrame
      */
     public MainjFrame() {
         initComponents();
+        //logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("src/resources/Melonheads50by50.png")));
         advSearchPannleButton.setVisible(false);
         jLabelSelectedMenu.setText("");
         jSeparator4.setVisible(false);
@@ -63,11 +68,11 @@ public class MainjFrame extends javax.swing.JFrame{
         jComboBox1.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(false);
-        songTitleLbl.setVisible(false);
-        songArtistLbl.setVisible(false);
-        songAlbumLbl.setVisible(false);
-        songPlaysLbl.setVisible(false);
-        musicSeparator.setVisible(false);
+        //songTitleLbl.setVisible(false);
+        //songArtistLbl.setVisible(false);
+        //songAlbumLbl.setVisible(false);
+        //songPlaysLbl.setVisible(false);
+        //musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         jLabel4.setText("Song title:");
         jLabel5.setText("artist:");
@@ -105,12 +110,14 @@ public class MainjFrame extends javax.swing.JFrame{
                     public void actionPerformed(ActionEvent ae2){
                         
                         jPanel1.removeAll();
-                        jPanel1.revalidate();
+                        jPanel1.setLayout(grd1col);
+                        jPanel1.validate();
+                        jScrollPane1.validate();
                         
                         
-                        jPanel1.removeAll();
-                        jPanel1.revalidate();
-                        jPanel1.repaint();
+                        //jPanel1.removeAll();
+                        //jPanel1.revalidate();
+                        //jPanel1.repaint();
                         jLabel2.setVisible(false);
                         jLabel3.setVisible(false);
                         jLabel4.setVisible(false);
@@ -123,11 +130,11 @@ public class MainjFrame extends javax.swing.JFrame{
                         jComboBox1.setVisible(false);
                         jButtonSubimtSong.setVisible(false);
                         jButtonSubmitPlaylist.setVisible(false);
-                        songTitleLbl.setVisible(true);
-                        songArtistLbl.setVisible(true);
-                        songAlbumLbl.setVisible(true);
-                        songPlaysLbl.setVisible(true);
-                        musicSeparator.setVisible(true);
+                        //songTitleLbl.setVisible(true);
+                        //songArtistLbl.setVisible(true);
+                        //songAlbumLbl.setVisible(true);
+                        //songPlaysLbl.setVisible(true);
+                        //musicSeparator.setVisible(true);
                         jScrollPane1.setVisible(true);
                         playEditButton.setVisible(true);
                         jLabelSelectedMenu.setText(newBtn.getText());
@@ -227,11 +234,6 @@ public class MainjFrame extends javax.swing.JFrame{
         jButtonSubmitPlaylist = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        musicSeparator = new javax.swing.JSeparator();
-        songTitleLbl = new javax.swing.JLabel();
-        songArtistLbl = new javax.swing.JLabel();
-        songAlbumLbl = new javax.swing.JLabel();
-        songPlaysLbl = new javax.swing.JLabel();
         advSearchPannleButton = new javax.swing.JButton();
         playEditButton = new javax.swing.JButton();
         playPnl = new javax.swing.JPanel();
@@ -404,20 +406,8 @@ public class MainjFrame extends javax.swing.JFrame{
             }
         });
 
-        jPanel1.setLayout(new java.awt.GridLayout(0, 1));
+        jPanel1.setLayout(new java.awt.GridLayout(0, 3));
         jScrollPane1.setViewportView(jPanel1);
-
-        songTitleLbl.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
-        songTitleLbl.setText("title");
-
-        songArtistLbl.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
-        songArtistLbl.setText("artist");
-
-        songAlbumLbl.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
-        songAlbumLbl.setText("album");
-
-        songPlaysLbl.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
-        songPlaysLbl.setText("plays");
 
         advSearchPannleButton.setFont(new java.awt.Font("Bebas Neue", 0, 24)); // NOI18N
         advSearchPannleButton.setText("Search");
@@ -445,44 +435,31 @@ public class MainjFrame extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(musicSeparator)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField5)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonSubmitPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonSubimtSong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(advSearchPannleButton)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonSubmitPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSubimtSong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(advSearchPannleButton)
+                        .addContainerGap(257, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(songArtistLbl)
-                        .addGap(61, 61, 61)
-                        .addComponent(songTitleLbl)
-                        .addGap(69, 69, 69)
-                        .addComponent(songAlbumLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(songPlaysLbl)
-                        .addGap(25, 25, 25))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField3)
+                            .addComponent(jTextField4)
+                            .addComponent(jTextField5)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,13 +496,6 @@ public class MainjFrame extends javax.swing.JFrame{
                     .addComponent(advSearchPannleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonSubmitPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(musicSeparator, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(songPlaysLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(songAlbumLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(songArtistLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(songTitleLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1))
         );
 
@@ -622,11 +592,11 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setText("");
         jButtonSubimtSong.setVisible(true);
         jButtonSubmitPlaylist.setVisible(false);
-        songTitleLbl.setVisible(false);
-        songArtistLbl.setVisible(false);
-        songAlbumLbl.setVisible(false);
-        songPlaysLbl.setVisible(false);
-        musicSeparator.setVisible(false);
+        //songTitleLbl.setVisible(false);
+        //songArtistLbl.setVisible(false);
+        //songAlbumLbl.setVisible(false);
+        //songPlaysLbl.setVisible(false);
+        //musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
@@ -647,11 +617,11 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(false);
-        songTitleLbl.setVisible(false);
-        songArtistLbl.setVisible(false);
-        songAlbumLbl.setVisible(false);
-        songPlaysLbl.setVisible(false);
-        musicSeparator.setVisible(false);
+        //songTitleLbl.setVisible(false);
+        //songArtistLbl.setVisible(false);
+        //songAlbumLbl.setVisible(false);
+        //songPlaysLbl.setVisible(false);
+        //musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
@@ -659,7 +629,7 @@ public class MainjFrame extends javax.swing.JFrame{
         jScrollPane1.setVisible(true);
         
         jPanel1.removeAll();
-        //jScrollPane1.removeAll();
+        jPanel1.setLayout(grd1col);
         jPanel1.validate();
         jPanel1.repaint();
         jScrollPane1.validate();
@@ -678,8 +648,14 @@ public class MainjFrame extends javax.swing.JFrame{
                     public void actionPerformed(ActionEvent ae2){
                         
                         jPanel1.removeAll();
-                        jPanel1.revalidate();
+                        jPanel1.setLayout(grd1col);
+                        jPanel1.validate();
+                        jScrollPane1.validate();
                         
+                        
+                        //jPanel1.removeAll();
+                        //jPanel1.revalidate();
+                        //jPanel1.repaint();
                         jLabel2.setVisible(false);
                         jLabel3.setVisible(false);
                         jLabel4.setVisible(false);
@@ -692,16 +668,52 @@ public class MainjFrame extends javax.swing.JFrame{
                         jComboBox1.setVisible(false);
                         jButtonSubimtSong.setVisible(false);
                         jButtonSubmitPlaylist.setVisible(false);
-                        songTitleLbl.setVisible(true);
-                        songArtistLbl.setVisible(true);
-                        songAlbumLbl.setVisible(true);
-                        songPlaysLbl.setVisible(true);
-                        musicSeparator.setVisible(true);
+                        //songTitleLbl.setVisible(true);
+                        //songArtistLbl.setVisible(true);
+                        //songAlbumLbl.setVisible(true);
+                        //songPlaysLbl.setVisible(true);
+                        //musicSeparator.setVisible(true);
                         jScrollPane1.setVisible(true);
                         playEditButton.setVisible(true);
                         jLabelSelectedMenu.setText(newBtn.getText());
-                        
-                        //Then populate with music from that playlist
+                        String songLine;
+                        File songs = new File("playlists/" + newBtn.getText() + ".txt");
+                        try {
+                            BufferedReader songRead = new BufferedReader(new FileReader(songs));
+                            while((songLine = songRead.readLine()) != null)
+                            {
+                                Song target = APIConnections.getSongs(APIConnections.GET_ID, songLine).get(0);
+                                sButton newSBtn = new sButton(Integer.parseInt(songLine), target.getArtist()+ " - " + target.getTitle() + " - " + target.getAlbum());
+                                newSBtn.setHorizontalAlignment(SwingConstants.LEFT);
+                                
+                                
+                                newSBtn.addActionListener(new ActionListener(){
+                                    public void actionPerformed(ActionEvent addToList){
+                                        playSong(target);
+                                    }
+                                });
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                jPanel1.add(newSBtn);
+                            }
+                            jPanel1.validate();
+                            jPanel1.repaint();
+                            jScrollPane1.validate();
+                            jScrollPane1.repaint();
+                            //Then populate with music from that playlist
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IOException ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (Exception ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 });
                 newBtn.setHorizontalAlignment(SwingConstants.LEFT);
@@ -731,17 +743,17 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(false);
-        songTitleLbl.setVisible(true);
-        songArtistLbl.setVisible(true);
-        songAlbumLbl.setVisible(true);
-        songPlaysLbl.setVisible(true);
-        musicSeparator.setVisible(true);
+        //songTitleLbl.setVisible(true);
+        //songArtistLbl.setVisible(true);
+        //songAlbumLbl.setVisible(true);
+        //songPlaysLbl.setVisible(true);
+        //musicSeparator.setVisible(true);
         jScrollPane1.setVisible(true);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
         
         jPanel1.removeAll();
-        //jScrollPane1.removeAll();
+        jPanel1.setLayout(grd3col);
         jPanel1.validate();
         jPanel1.repaint();
         jScrollPane1.validate();
@@ -769,11 +781,11 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(true);
-        songTitleLbl.setVisible(false);
-        songArtistLbl.setVisible(false);
-        songAlbumLbl.setVisible(false);
-        songPlaysLbl.setVisible(false);
-        musicSeparator.setVisible(false);
+        //songTitleLbl.setVisible(false);
+        //songArtistLbl.setVisible(false);
+        //songAlbumLbl.setVisible(false);
+        //songPlaysLbl.setVisible(false);
+        //musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
@@ -794,17 +806,17 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(false);
-        songTitleLbl.setVisible(false);
-        songArtistLbl.setVisible(false);
-        songAlbumLbl.setVisible(false);
-        songPlaysLbl.setVisible(false);
-        musicSeparator.setVisible(false);
+        //songTitleLbl.setVisible(false);
+        //songArtistLbl.setVisible(false);
+        //songAlbumLbl.setVisible(false);
+        //songPlaysLbl.setVisible(false);
+        //musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
         
         jPanel1.removeAll();
-        //jScrollPane1.removeAll();
+        jPanel1.setLayout(grd1col);
         jPanel1.validate();
         jPanel1.repaint();
         jScrollPane1.validate();
@@ -826,17 +838,17 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(false);
-        songTitleLbl.setVisible(true);
-        songArtistLbl.setVisible(true);
-        songAlbumLbl.setVisible(true);
-        songPlaysLbl.setVisible(true);
-        musicSeparator.setVisible(true);
+        //songTitleLbl.setVisible(true);
+        //songArtistLbl.setVisible(true);
+        //songAlbumLbl.setVisible(true);
+        //songPlaysLbl.setVisible(true);
+        //musicSeparator.setVisible(true);
         jScrollPane1.setVisible(true);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
         
         jPanel1.removeAll();
-        //jScrollPane1.removeAll();
+        jPanel1.setLayout(grd3col);
         jPanel1.validate();
         jPanel1.repaint();
         jScrollPane1.validate();
@@ -900,6 +912,7 @@ public class MainjFrame extends javax.swing.JFrame{
         JButton newBtn = new JButton(jTextField2.getText());
         newBtn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae2){
+                /**
                 advSearchPannleButton.setVisible(false);
                 jLabel2.setVisible(false);
                 jLabel3.setVisible(false);
@@ -913,15 +926,83 @@ public class MainjFrame extends javax.swing.JFrame{
                 jComboBox1.setVisible(false);
                 jButtonSubimtSong.setVisible(false);
                 jButtonSubmitPlaylist.setVisible(false);
-                songTitleLbl.setVisible(true);
-                songArtistLbl.setVisible(true);
-                songAlbumLbl.setVisible(true);
-                songPlaysLbl.setVisible(true);
-                musicSeparator.setVisible(true);
+                //songTitleLbl.setVisible(true);
+                //songArtistLbl.setVisible(true);
+                //songAlbumLbl.setVisible(true);
+                //songPlaysLbl.setVisible(true);
+                //musicSeparator.setVisible(true);
                 jScrollPane1.setVisible(true);
                 jLabelSelectedMenu.setText(newBtn.getText());
                 playEditButton.setVisible(true);
                 //Then populate with music from that playlist
+                **/
+                jPanel1.removeAll();
+                        jPanel1.setLayout(grd1col);
+                        jPanel1.validate();
+                        jScrollPane1.validate();
+                        
+                        
+                        //jPanel1.removeAll();
+                        //jPanel1.revalidate();
+                        //jPanel1.repaint();
+                        jLabel2.setVisible(false);
+                        jLabel3.setVisible(false);
+                        jLabel4.setVisible(false);
+                        jLabel5.setVisible(false);
+                        jLabel6.setVisible(false);
+                        jTextField2.setVisible(false);
+                        jTextField3.setVisible(false);
+                        jTextField4.setVisible(false);
+                        jTextField5.setVisible(false);
+                        jComboBox1.setVisible(false);
+                        jButtonSubimtSong.setVisible(false);
+                        jButtonSubmitPlaylist.setVisible(false);
+                        //songTitleLbl.setVisible(true);
+                        //songArtistLbl.setVisible(true);
+                        //songAlbumLbl.setVisible(true);
+                        //songPlaysLbl.setVisible(true);
+                        //musicSeparator.setVisible(true);
+                        jScrollPane1.setVisible(true);
+                        playEditButton.setVisible(true);
+                        jLabelSelectedMenu.setText(newBtn.getText());
+                        String songLine;
+                        File songs = new File("playlists/" + newBtn.getText() + ".txt");
+                        try {
+                            BufferedReader songRead = new BufferedReader(new FileReader(songs));
+                            while((songLine = songRead.readLine()) != null)
+                            {
+                                Song target = APIConnections.getSongs(APIConnections.GET_ID, songLine).get(0);
+                                sButton newSBtn = new sButton(Integer.parseInt(songLine), target.getArtist()+ " - " + target.getTitle() + " - " + target.getAlbum());
+                                newSBtn.setHorizontalAlignment(SwingConstants.LEFT);
+                                
+                                
+                                newSBtn.addActionListener(new ActionListener(){
+                                    public void actionPerformed(ActionEvent addToList){
+                                        playSong(target);
+                                    }
+                                });
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                jPanel1.add(newSBtn);
+                            }
+                            jPanel1.validate();
+                            jPanel1.repaint();
+                            jScrollPane1.validate();
+                            jScrollPane1.repaint();
+                            //Then populate with music from that playlist
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IOException ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (Exception ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }
             }
         });
         
@@ -975,19 +1056,71 @@ public class MainjFrame extends javax.swing.JFrame{
                results = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText().replaceAll(" ","%20"));
                
                jPanel1.removeAll();
+               jPanel1.setLayout(grd3col);
                jPanel1.revalidate();
                jPanel1.repaint();
+               
+               JLabel ata = new JLabel("artist--title--album");
+               ata.setFont(new java.awt.Font("Bebas Neue", 0, 40));
+               ata.setForeground(new java.awt.Color(51, 153, 0));
+               ata.setHorizontalAlignment(SwingConstants.CENTER);
+               ata.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+               JLabel plays = new JLabel("plays");
+               plays.setFont(new java.awt.Font("Bebas Neue", 0, 40));
+               plays.setForeground(new java.awt.Color(51, 153, 0));
+               plays.setHorizontalAlignment(SwingConstants.CENTER);
+               plays.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+               JLabel ratingLb = new JLabel("rating");
+               ratingLb.setFont(new java.awt.Font("Bebas Neue", 0, 40));
+               ratingLb.setForeground(new java.awt.Color(51, 153, 0));
+               ratingLb.setHorizontalAlignment(SwingConstants.CENTER);
+               ratingLb.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+               JLabel blank = new JLabel("");
+               JLabel blank2 = new JLabel("");
+               
+               jPanel1.add(ata);
+               jPanel1.add(plays);
+               jPanel1.add(ratingLb);
+               jPanel1.add(blank);
+               jPanel1.add(blank2);
+               
                for(int i = 0; i < results.size(); i++)
                {
                     final Song tempSong = results.get(i);
                     JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    JLabel playsLbl = new JLabel(""+tempSong.getPlays()+"");
+                    playsLbl.setHorizontalAlignment(SwingConstants.CENTER);
+                    int rating;
+                    if (tempSong.getUpvotes() == 0)
+                        rating = 0;
+                    else
+                        rating = (tempSong.getUpvotes() + tempSong.getDownvotes()) / tempSong.getUpvotes();
+                    JLabel ratingLbl = new JLabel(""+rating+"%");
+                    ratingLbl.setHorizontalAlignment(SwingConstants.CENTER);
+                    JButton likeBtn = new JButton("LIKE");
+                    likeBtn.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent ae4){
+                            tempSong.addUpvote();
+                        }
+                    });
+                    JButton dislikeBtn = new JButton("DISLIKE");
+                    dislikeBtn.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent ae5){
+                            tempSong.addDownvote();
+                        }
+                    });
                     newBtn.setHorizontalAlignment(SwingConstants.LEFT);
                     newBtn.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             playSong(tempSong);
+                            tempSong.addPlays();
                         }
                     });
                     jPanel1.add(newBtn);
+                    jPanel1.add(playsLbl);
+                    jPanel1.add(ratingLbl);
+                    jPanel1.add(likeBtn);
+                    jPanel1.add(dislikeBtn);
                     jPanel1.validate();
                     jScrollPane1.validate();
                }                        
@@ -1023,11 +1156,11 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(false);
-        songTitleLbl.setVisible(false);
-        songArtistLbl.setVisible(false);
-        songAlbumLbl.setVisible(false);
-        songPlaysLbl.setVisible(false);
-        musicSeparator.setVisible(false);
+        //songTitleLbl.setVisible(false);
+        //songArtistLbl.setVisible(false);
+        //songAlbumLbl.setVisible(false);
+        //songPlaysLbl.setVisible(false);
+        //musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         playEditButton.setVisible(false);
     }//GEN-LAST:event_advSearchButtonActionPerformed
@@ -1212,15 +1345,10 @@ public class MainjFrame extends javax.swing.JFrame{
     private javax.swing.JLabel logoLabel;
     private javax.swing.JLabel meloLabel;
     private javax.swing.JButton musicButton;
-    private javax.swing.JSeparator musicSeparator;
     private javax.swing.JButton myPlaylistsButton;
     private javax.swing.JButton newAdditionsButton;
     private javax.swing.JButton playEditButton;
     private javax.swing.JPanel playPnl;
     private javax.swing.JButton popularPlaylistsButton3;
-    private javax.swing.JLabel songAlbumLbl;
-    private javax.swing.JLabel songArtistLbl;
-    private javax.swing.JLabel songPlaysLbl;
-    private javax.swing.JLabel songTitleLbl;
     // End of variables declaration//GEN-END:variables
 }

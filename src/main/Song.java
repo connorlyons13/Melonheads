@@ -67,6 +67,10 @@ public class Song {
     public void setUpvotes(int upvotes) {
         this.upvotes = upvotes;
     }
+    
+    public void addUpvote() {
+        this.upvotes = this.upvotes++;
+    }
 
     public int getDownvotes() {
         return downvotes;
@@ -75,6 +79,10 @@ public class Song {
     public void setDownvotes(int downvotes) {
         this.downvotes = downvotes;
     }
+    
+    public void addDownvote() {
+        this.downvotes = this.downvotes++;
+    }
 
     public int getPlays() {
         return plays;
@@ -82,6 +90,10 @@ public class Song {
 
     public void setPlays(int plays) {
         this.plays = plays;
-}
+    }
+    
+    public void addPlays() {
+        this.plays = this.plays++;
+    }
 }
 
