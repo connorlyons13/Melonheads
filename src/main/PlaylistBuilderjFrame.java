@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 /**
  *
  * @author Carson Murray
@@ -58,13 +59,6 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         jScrollPaneSongDisplay = new javax.swing.JScrollPane();
         jPanelSongDisplay = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel6 = new javax.swing.JLabel();
         jTextFieldSearch = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -75,59 +69,13 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanelSongDisplay.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelSongDisplay.setLayout(new java.awt.GridLayout(0, 1));
+        jPanelSongDisplay.setLayout(new java.awt.GridLayout(0, 5));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel11.setText("Welcome to the Playlist Builder! Here you will be able to add song to your playlist! Simply search for song click on the button and it will be add to your playlist!");
         jPanelSongDisplay.add(jLabel11);
 
         jScrollPaneSongDisplay.setViewportView(jPanelSongDisplay);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Title ");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Artist");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Album");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Plays");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Quality");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(85, 85, 85)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(90, 90, 90)
-                .addComponent(jLabel5)
-                .addGap(99, 99, 99)
-                .addComponent(jLabel6)
-                .addGap(26, 26, 26))
-            .addComponent(jSeparator2)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
 
         jTextFieldSearch.setText("Search");
         jTextFieldSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -163,7 +111,6 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPaneSongDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -176,7 +123,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 273, Short.MAX_VALUE)
                         .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,10 +143,8 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneSongDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPaneSongDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -228,16 +173,62 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                jPanelSongDisplay.removeAll();
                jPanelSongDisplay.revalidate();
                jPanelSongDisplay.repaint();
+               
+               JLabel ata = new JLabel("artist--title--album");
+               ata.setFont(new java.awt.Font("Bebas Neue", 0, 40));
+               ata.setForeground(new java.awt.Color(51, 153, 0));
+               ata.setHorizontalAlignment(SwingConstants.CENTER);
+               ata.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+               JLabel plays = new JLabel("plays");
+               plays.setFont(new java.awt.Font("Bebas Neue", 0, 40));
+               plays.setForeground(new java.awt.Color(51, 153, 0));
+               plays.setHorizontalAlignment(SwingConstants.CENTER);
+               plays.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+               JLabel ratingLb = new JLabel("rating");
+               ratingLb.setFont(new java.awt.Font("Bebas Neue", 0, 40));
+               ratingLb.setForeground(new java.awt.Color(51, 153, 0));
+               ratingLb.setHorizontalAlignment(SwingConstants.CENTER);
+               ratingLb.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+               JLabel blank = new JLabel("");
+               JLabel blank2 = new JLabel("");
+               
+               jPanelSongDisplay.add(ata);
+               jPanelSongDisplay.add(plays);
+               jPanelSongDisplay.add(ratingLb);
+               jPanelSongDisplay.add(blank);
+               jPanelSongDisplay.add(blank2);
                for(int i = 0; i < results.size(); i++)
                {
                     sButton newBtn = new sButton(results.get(i).getId(), results.get(i).getArtist() + " - " + results.get(i).getTitle() + " - " + results.get(i).getAlbum());
+                    Song tempSong = results.get(i);
+                    JLabel playsLbl = new JLabel(""+tempSong.getPlays()+"");
+                    playsLbl.setHorizontalAlignment(SwingConstants.CENTER);
+                    int rating;
+                    if (tempSong.getUpvotes() == 0)
+                        rating = 0;
+                    else
+                        rating = (tempSong.getUpvotes() + tempSong.getDownvotes()) / tempSong.getUpvotes();
+                    JLabel ratingLbl = new JLabel(""+rating+"%");
+                    ratingLbl.setHorizontalAlignment(SwingConstants.CENTER);
+                    JButton likeBtn = new JButton("LIKE");
+                    likeBtn.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent ae4){
+                            tempSong.addUpvote();
+                        }
+                    });
+                    JButton dislikeBtn = new JButton("DISLIKE");
+                    dislikeBtn.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent ae5){
+                            tempSong.addDownvote();
+                        }
+                    });
                     
                     newBtn.addActionListener(new ActionListener(){
                         public void actionPerformed(ActionEvent addToList){
                             try{
 
                                 JOptionPane.showMessageDialog(null,
-                                "Song add to " + jLabel8.getText()  +"playlist!",
+                                "Song added to " + jLabel8.getText()  +" playlist!",
                                 "Song Add",
                                 JOptionPane.PLAIN_MESSAGE);
                                 
@@ -257,6 +248,10 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                     
 
                     jPanelSongDisplay.add(newBtn);
+                    jPanelSongDisplay.add(playsLbl);
+                    jPanelSongDisplay.add(ratingLbl);
+                    jPanelSongDisplay.add(likeBtn);
+                    jPanelSongDisplay.add(dislikeBtn);
                     jPanelSongDisplay.validate();
                     jScrollPaneSongDisplay.validate();  
                     
@@ -314,18 +309,11 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelSongDisplay;
     private javax.swing.JScrollPane jScrollPaneSongDisplay;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextFieldSearch;
     // End of variables declaration//GEN-END:variables
 }
