@@ -25,6 +25,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Carson Murray
@@ -40,6 +41,9 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         filePath = file;
         playlistName = playlist;
         jLabel8.setText(playlistName);
+        
+
+        
     }
 
     /**
@@ -53,6 +57,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
 
         jScrollPaneSongDisplay = new javax.swing.JScrollPane();
         jPanelSongDisplay = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -71,6 +76,11 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
 
         jPanelSongDisplay.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelSongDisplay.setLayout(new java.awt.GridLayout(0, 1));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel11.setText("Welcome to the Playlist Builder! Here you will be able to add song to your playlist! Simply search for song click on the button and it will be add to your playlist!");
+        jPanelSongDisplay.add(jLabel11);
+
         jScrollPaneSongDisplay.setViewportView(jPanelSongDisplay);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -165,15 +175,15 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +196,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,6 +237,12 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                     newBtn.addActionListener(new ActionListener(){
                         public void actionPerformed(ActionEvent addToList){
                             try{
+
+                                JOptionPane.showMessageDialog(null,
+                                "Song add to " + jLabel8.getText()  +"playlist!",
+                                "Song Add",
+                                JOptionPane.PLAIN_MESSAGE);
+                                
                                 File newPlaylist = new File("playlists/" + jLabel8.getText() +".txt");
                                 FileWriter fileWriter2 = new FileWriter(newPlaylist, true);
                                 PrintWriter playlistWriter2 = new PrintWriter(fileWriter2, true);
@@ -299,6 +315,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
