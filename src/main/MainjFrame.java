@@ -659,7 +659,11 @@ public class MainjFrame extends javax.swing.JFrame{
         jScrollPane1.setVisible(true);
         
         jPanel1.removeAll();
-        jPanel1.revalidate();
+        //jScrollPane1.removeAll();
+        jPanel1.validate();
+        jPanel1.repaint();
+        jScrollPane1.validate();
+        jScrollPane1.repaint();
         
         File playlists = new File("src/data/playlist.txt");
         try {
@@ -737,7 +741,11 @@ public class MainjFrame extends javax.swing.JFrame{
         playEditButton.setVisible(false);
         
         jPanel1.removeAll();
-        jPanel1.revalidate();
+        //jScrollPane1.removeAll();
+        jPanel1.validate();
+        jPanel1.repaint();
+        jScrollPane1.validate();
+        jScrollPane1.repaint();
     }//GEN-LAST:event_musicButtonActionPerformed
 
     private void createNewPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewPlaylistButtonActionPerformed
@@ -796,7 +804,11 @@ public class MainjFrame extends javax.swing.JFrame{
         playEditButton.setVisible(false);
         
         jPanel1.removeAll();
-        jPanel1.revalidate();
+        //jScrollPane1.removeAll();
+        jPanel1.validate();
+        jPanel1.repaint();
+        jScrollPane1.validate();
+        jScrollPane1.repaint();
     }//GEN-LAST:event_popularPlaylistsButton3ActionPerformed
 
     private void newAdditionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAdditionsButtonActionPerformed
@@ -822,6 +834,13 @@ public class MainjFrame extends javax.swing.JFrame{
         jScrollPane1.setVisible(true);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
+        
+        jPanel1.removeAll();
+        //jScrollPane1.removeAll();
+        jPanel1.validate();
+        jPanel1.repaint();
+        jScrollPane1.validate();
+        jScrollPane1.repaint();
     }//GEN-LAST:event_newAdditionsButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
