@@ -172,6 +172,70 @@ public class APIConnections {
 	}  
     }
     
+    public static boolean playSong(int id, int newValue) throws Exception {
+		URL object;
+		object = new URL(address + "/songs/play");
+		HttpURLConnection con = (HttpURLConnection) object.openConnection();
+		con.setDoOutput(true);
+		con.setDoInput(true);
+		con.setRequestProperty("Content-Type", "application/json");
+		con.setRequestProperty("Accept", "application/json");
+		con.setRequestMethod("PUT");
+		
+		// create json of song information to send to the API
+		String input = "{ \"id\": " + id + ", \"newValue\": \"" + newValue + "\" }";
+
+		OutputStream os = con.getOutputStream();
+		os.write(input.getBytes());
+		os.flush();
+
+		StringBuilder sb = new StringBuilder();
+		int HttpResult = con.getResponseCode();
+		if (HttpResult == HttpURLConnection.HTTP_OK) {
+			BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			br.close();
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public static boolean voteSong(int id, int newValue, int voteType) throws Exception {
+		URL object;
+		object = new URL(address + "/songs/vote");
+		HttpURLConnection con = (HttpURLConnection) object.openConnection();
+		con.setDoOutput(true);
+		con.setDoInput(true);
+		con.setRequestProperty("Content-Type", "application/json");
+		con.setRequestProperty("Accept", "application/json");
+		con.setRequestMethod("PUT");
+		
+		// create json of song information to send to the API
+		String input = "{ \"id\": " + id + ", \"newValue\": " + newValue + ", \"voteType\": \"" + voteType + "\" }";
+
+		OutputStream os = con.getOutputStream();
+		os.write(input.getBytes());
+		os.flush();
+
+		StringBuilder sb = new StringBuilder();
+		int HttpResult = con.getResponseCode();
+		if (HttpResult == HttpURLConnection.HTTP_OK) {
+			BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			br.close();
+			return true;
+		} else {
+			return false;
+		}
+	}
+    
     public static String getYoutubeVideoId(String youtubeUrl) {
         String video_id="";
         if (youtubeUrl != null && youtubeUrl.trim().length() > 0 && youtubeUrl.startsWith("http")) {
