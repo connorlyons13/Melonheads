@@ -22,6 +22,7 @@ public class APIConnections {
     
     private static final String address = "http://54.227.171.79";
     public static final int GET_SEARCH = 0, GET_ID = 1, GET_TITLE = 2, GET_ARTIST = 3, GET_ALBUM = 4;
+    public static final int VOTE_UP = 0, VOTE_DOWN = 1;
     public static final String SRC_YOUTUBE = "youtube";
     
     public static ArrayList<Song> getSongs(int getType, String searchTerm) throws Exception {
