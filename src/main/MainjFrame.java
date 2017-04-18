@@ -1091,22 +1091,32 @@ public class MainjFrame extends javax.swing.JFrame{
                     JLabel playsLbl = new JLabel(""+tempSong.getPlays()+"");
                     playsLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     int rating;
+                    double upVotes = 0.0;
+                    double downVotes;
                     if (tempSong.getUpvotes() == 0)
                         rating = 0;
                     else
-                        rating = (tempSong.getUpvotes() + tempSong.getDownvotes()) / tempSong.getUpvotes();
+                        upVotes = tempSong.getUpvotes();
+                        downVotes = tempSong.getDownvotes();
+                        rating = (int)(upVotes / (upVotes + downVotes)) * 100;
                     JLabel ratingLbl = new JLabel(""+rating+"%");
                     ratingLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     JButton likeBtn = new JButton("LIKE");
                     likeBtn.addActionListener(new ActionListener(){
                         public void actionPerformed(ActionEvent ae4){
                             tempSong.addUpvote();
+                            try {
+                                APIConnections.voteSong(tempSong.getId(), APIConnections.VOTE_UP);
+                            } catch (Exception e){}
                         }
                     });
                     JButton dislikeBtn = new JButton("DISLIKE");
                     dislikeBtn.addActionListener(new ActionListener(){
                         public void actionPerformed(ActionEvent ae5){
                             tempSong.addDownvote();
+                            try {
+                                APIConnections.voteSong(tempSong.getId(), APIConnections.VOTE_DOWN);
+                            } catch (Exception e){}
                         }
                     });
                     newBtn.setHorizontalAlignment(SwingConstants.LEFT);
@@ -1114,6 +1124,9 @@ public class MainjFrame extends javax.swing.JFrame{
                         public void actionPerformed(ActionEvent e) {
                             playSong(tempSong);
                             tempSong.addPlays();
+                            try {
+                                APIConnections.playSong(tempSong.getId());
+                            } catch (Exception ee){}
                         }
                     });
                     jPanel1.add(newBtn);

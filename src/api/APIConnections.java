@@ -173,7 +173,7 @@ public class APIConnections {
 	}  
     }
     
-    public static boolean playSong(int id, int newValue) throws Exception {
+    public static boolean playSong(int id) throws Exception {
 		URL object;
 		object = new URL(address + "/songs/play");
 		HttpURLConnection con = (HttpURLConnection) object.openConnection();
@@ -184,7 +184,7 @@ public class APIConnections {
 		con.setRequestMethod("PUT");
 		
 		// create json of song information to send to the API
-		String input = "{ \"id\": " + id + ", \"newValue\": \"" + newValue + "\" }";
+		String input = "{ \"id\": " + id + " }"; 
 
 		OutputStream os = con.getOutputStream();
 		os.write(input.getBytes());
@@ -205,7 +205,7 @@ public class APIConnections {
 		}
 	}
 	
-	public static boolean voteSong(int id, int newValue, int voteType) throws Exception {
+	public static boolean voteSong(int id, int voteType) throws Exception {
 		URL object;
 		object = new URL(address + "/songs/vote");
 		HttpURLConnection con = (HttpURLConnection) object.openConnection();
@@ -216,7 +216,7 @@ public class APIConnections {
 		con.setRequestMethod("PUT");
 		
 		// create json of song information to send to the API
-		String input = "{ \"id\": " + id + ", \"newValue\": " + newValue + ", \"voteType\": \"" + voteType + "\" }";
+		String input = "{ \"id\": " + id + ", \"voteType\": " + voteType + " }";
 
 		OutputStream os = con.getOutputStream();
 		os.write(input.getBytes());
