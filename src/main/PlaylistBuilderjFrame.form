@@ -98,7 +98,7 @@
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="&quot;Welcome to the Playlist Builder! \nHere you will be able to add song to your playlist! Simply search for song click on the button and it will be add to your playlist!&quot;" type="code"/>
+                  <Connection code="&quot;&lt;html&gt;Welcome to the Playlist Editor! &lt;br&gt;Here you will be able to add song to your playlist!&lt;br&gt;Simply search for song click on the button and it will be add to your playlist!&lt;/html&gt;&quot;" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -145,7 +145,9 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Bebas Neue" size="24" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Playlist Builder"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="&quot;Editor&quot;" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">

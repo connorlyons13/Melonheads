@@ -72,7 +72,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         jPanelSongDisplay.setLayout(new java.awt.GridLayout(0, 5));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel11.setText("Welcome to the Playlist Builder! \nHere you will be able to add song to your playlist! Simply search for song click on the button and it will be add to your playlist!");
+        jLabel11.setText("<html>Welcome to the Playlist Editor! <br>Here you will be able to add song to your playlist!<br>Simply search for song click on the button and it will be add to your playlist!</html>");
         jPanelSongDisplay.add(jLabel11);
 
         jScrollPaneSongDisplay.setViewportView(jPanelSongDisplay);
@@ -101,7 +101,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         jLabel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 0), new java.awt.Color(51, 153, 0), new java.awt.Color(51, 153, 0), new java.awt.Color(51, 153, 0)));
 
         jLabel1.setFont(new java.awt.Font("Bebas Neue", 2, 24)); // NOI18N
-        jLabel1.setText("Playlist Builder");
+        jLabel1.setText("Editor");
 
         jLabel8.setFont(new java.awt.Font("Bebas Neue", 0, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 153, 0));
