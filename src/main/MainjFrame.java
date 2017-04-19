@@ -582,6 +582,7 @@ public class MainjFrame extends javax.swing.JFrame{
         jComboBox1.addItem("youtube");
         jComboBox1.addItem("soundCloud-NOT YET");
         jLabel4.setVisible(true);
+        jLabel4.setText("song title:");
         jLabel5.setVisible(true);
         jLabel6.setVisible(true);
         jTextField3.setVisible(true);
