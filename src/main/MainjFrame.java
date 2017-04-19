@@ -1091,14 +1091,17 @@ public class MainjFrame extends javax.swing.JFrame{
                     JLabel playsLbl = new JLabel(""+tempSong.getPlays()+"");
                     playsLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     int rating;
+                    double value = 0.0;
                     double upVotes = 0.0;
-                    double downVotes;
+                    double downVotes, total;
                     if (tempSong.getUpvotes() == 0)
                         rating = 0;
                     else
                         upVotes = tempSong.getUpvotes();
                         downVotes = tempSong.getDownvotes();
-                        rating = (int)(upVotes / (upVotes + downVotes)) * 100;
+                        total = upVotes + downVotes;
+                        value = (upVotes / total) * 100;
+                        rating = (int)value;
                     JLabel ratingLbl = new JLabel(""+rating+"%");
                     ratingLbl.setHorizontalAlignment(SwingConstants.CENTER);
                     JButton likeBtn = new JButton("LIKE");
