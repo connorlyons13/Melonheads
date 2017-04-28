@@ -97,10 +97,10 @@ public class MainjFrame extends javax.swing.JFrame{
             }
         });
         
-        File playlists = new File("src/data/playlist.txt");
+        File playlists = new File("data/playlists/playlist.txt");
         try {
-            //File playlists = new File("src/data/playlist.txt");
-            //playlists.mkdir();
+            new File("data/").mkdir(); // ensure that the data folder exists
+            new File("data/playlists/").mkdir(); // ensure that the playlists folder exists
             BufferedReader reader = new BufferedReader(new FileReader(playlists));
             String line;
             while((line = reader.readLine()) != null){
@@ -139,7 +139,7 @@ public class MainjFrame extends javax.swing.JFrame{
                         playEditButton.setVisible(true);
                         jLabelSelectedMenu.setText(newBtn.getText());
                         String songLine;
-                        File songs = new File("playlists/" + newBtn.getText() + ".txt");
+                        File songs = new File("data/playlists/" + newBtn.getText() + ".txt");
                         try {
                             BufferedReader songRead = new BufferedReader(new FileReader(songs));
                             while((songLine = songRead.readLine()) != null)
@@ -636,10 +636,10 @@ public class MainjFrame extends javax.swing.JFrame{
         jScrollPane1.validate();
         jScrollPane1.repaint();
         
-        File playlists = new File("src/data/playlist.txt");
+        File playlists = new File("data/playlists/playlist.txt");
         try {
-            //File playlists = new File("src/data/playlist.txt");
-            //playlists.mkdir();
+            new File("data/").mkdir(); // ensure that the data folder exists
+            new File("data/playlists/").mkdir(); // ensure that the playlists folder exists
             BufferedReader reader = new BufferedReader(new FileReader(playlists));
             String line;
             while((line = reader.readLine()) != null){
@@ -678,7 +678,7 @@ public class MainjFrame extends javax.swing.JFrame{
                         playEditButton.setVisible(true);
                         jLabelSelectedMenu.setText(newBtn.getText());
                         String songLine;
-                        File songs = new File("playlists/" + newBtn.getText() + ".txt");
+                        File songs = new File("data/playlists/" + newBtn.getText() + ".txt");
                         try {
                             BufferedReader songRead = new BufferedReader(new FileReader(songs));
                             while((songLine = songRead.readLine()) != null)
@@ -967,7 +967,7 @@ public class MainjFrame extends javax.swing.JFrame{
                         playEditButton.setVisible(true);
                         jLabelSelectedMenu.setText(newBtn.getText());
                         String songLine;
-                        File songs = new File("playlists/" + newBtn.getText() + ".txt");
+                        File songs = new File("data/playlists/" + newBtn.getText() + ".txt");
                         try {
                             BufferedReader songRead = new BufferedReader(new FileReader(songs));
                             while((songLine = songRead.readLine()) != null)
@@ -1009,16 +1009,16 @@ public class MainjFrame extends javax.swing.JFrame{
         
          try {
              
-            File playlists = new File("src/data/playlist.txt");
+            File playlists = new File("data/playlists/playlist.txt");
             FileWriter fileWriter = new FileWriter(playlists, true);
             PrintWriter playlistWriter = new PrintWriter(fileWriter, true);
             playlistWriter.println(jTextField2.getText());
             playlistWriter.close();
             
-            File newPlaylist = new File("src/data/" + jTextField2.getText() +".txt");
+            File newPlaylist = new File("data/playlists/" + jTextField2.getText() +".txt");
             FileWriter fileWriter2 = new FileWriter(newPlaylist, true);
             PrintWriter playlistWriter2 = new PrintWriter(fileWriter2, true);
-            playlistWriter2.println("1");
+            //playlistWriter2.println("1");
             playlistWriter2.close();
         
         }catch(IOException e)
