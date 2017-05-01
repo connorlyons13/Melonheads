@@ -102,6 +102,7 @@ public class MainjFrame extends javax.swing.JFrame{
         try {
             new File("data/").mkdir(); // ensure that the data folder exists
             new File("data/playlists/").mkdir(); // ensure that the playlists folder exists
+            new File("data/playlists/temp.txt");
             BufferedReader reader = new BufferedReader(new FileReader(playlists));
             String line;
             while((line = reader.readLine()) != null){
@@ -166,6 +167,7 @@ public class MainjFrame extends javax.swing.JFrame{
                                 
                                 jPanel1.add(newSBtn);
                             }
+                            songRead.close();
                             jPanel1.validate();
                             jPanel1.repaint();
                             jScrollPane1.validate();
@@ -186,6 +188,7 @@ public class MainjFrame extends javax.swing.JFrame{
                 jScrollPanePlaylistDisplay.validate();
             
             }
+            reader.close();
         }catch(IOException e)
         {
             
@@ -719,7 +722,9 @@ public class MainjFrame extends javax.swing.JFrame{
                                 
                                 
                                 jPanel1.add(newSBtn);
+                                
                             }
+                            songRead.close();
                             jPanel1.validate();
                             jPanel1.repaint();
                             jScrollPane1.validate();
@@ -740,6 +745,7 @@ public class MainjFrame extends javax.swing.JFrame{
                 jScrollPane1.validate();
             
             }
+            reader.close();
         }catch(IOException e)
         {
             
@@ -1004,16 +1010,11 @@ public class MainjFrame extends javax.swing.JFrame{
                                         playSong(target);
                                     }
                                 });
-                                
-                                
-                                
-                                
-                                
-                                
-                                
+
                                 
                                 jPanel1.add(newSBtn);
                             }
+                            songRead.close();
                             jPanel1.validate();
                             jPanel1.repaint();
                             jScrollPane1.validate();
@@ -1036,12 +1037,14 @@ public class MainjFrame extends javax.swing.JFrame{
             PrintWriter playlistWriter = new PrintWriter(fileWriter, true);
             playlistWriter.println(jTextField2.getText());
             playlistWriter.close();
+            fileWriter.close();
             
             File newPlaylist = new File("data/playlists/" + jTextField2.getText() +".txt");
             FileWriter fileWriter2 = new FileWriter(newPlaylist, true);
             PrintWriter playlistWriter2 = new PrintWriter(fileWriter2, true);
-            //playlistWriter2.println("1");
+            playlistWriter2.println("1");
             playlistWriter2.close();
+            fileWriter2.close();
         
         }catch(IOException e)
         {

@@ -20,10 +20,14 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import api.APIConnections;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.time.Clock.system;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -64,12 +68,13 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanelSongDisplay.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelSongDisplay.setLayout(new java.awt.GridLayout(0, 5));
+        jPanelSongDisplay.setLayout(new java.awt.GridLayout(0, 1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel11.setText("<html>Welcome to the Playlist Editor! <br>Here you will be able to add songs to your playlist!<br>Simply search for a song, click on the button, and it will be added to your playlist!</html>");
@@ -107,11 +112,18 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(51, 153, 0));
         jLabel8.setText("jLabel8");
 
+        jButton1.setText("Delete Songs");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneSongDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPaneSongDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -123,11 +135,13 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 273, Short.MAX_VALUE)
-                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -141,9 +155,15 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPaneSongDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -232,7 +252,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                                 "Song Add",
                                 JOptionPane.PLAIN_MESSAGE);
                                 
-                                File newPlaylist = new File("playlists/" + jLabel8.getText() +".txt");
+                                File newPlaylist = new File("data/playlists/" + jLabel8.getText() +".txt");
                                 FileWriter fileWriter2 = new FileWriter(newPlaylist, true);
                                 PrintWriter playlistWriter2 = new PrintWriter(fileWriter2, true);
                                 playlistWriter2.println(newBtn.getID());
@@ -265,6 +285,68 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         };
 
     }//GEN-LAST:event_jTextFieldSearchKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    // TODO add your handling code here:
+    
+        jPanelSongDisplay.removeAll();
+        String songLine;
+
+                        File songs = new File("data/playlists/" + jLabel8.getText() + ".txt");
+                        try {                           
+                            BufferedReader songRead = new BufferedReader(new FileReader(songs));
+                            while((songLine = songRead.readLine()) != null){
+                                Song target = APIConnections.getSongs(APIConnections.GET_ID, songLine).get(0);
+                                sButton newSBtn = new sButton(Integer.parseInt(songLine), target.getArtist()+ " - " + target.getTitle() + " - " + target.getAlbum());
+                                newSBtn.setHorizontalAlignment(SwingConstants.LEFT);
+                                
+                                
+                                newSBtn.addActionListener(new ActionListener(){
+                                    public void actionPerformed(ActionEvent addToList){
+                                        File inputFile = new File("data/playlists/" + jLabel8.getText() + ".txt");
+                                        File temp = new File("data/playlists/temp.txt");
+
+                                        try {
+                                            BufferedReader lineRead = new BufferedReader(new FileReader(inputFile));
+                                            BufferedWriter lineWrite = new BufferedWriter(new FileWriter(temp));
+                                        
+                                            int lineToRemove = newSBtn.getID();
+                                            String currentLine;
+                                            while((currentLine = lineRead.readLine()) != null) {
+                                            // trim newline when comparing with lineToRemove
+                                                String trimmedLine = currentLine.trim();
+                                                if(Integer.parseInt(trimmedLine) == lineToRemove) continue;
+                                                lineWrite.write(currentLine + System.getProperty("line.separator"));
+                                            }
+                                            lineWrite.close(); 
+                                            lineRead.close(); 
+                                            temp.renameTo(inputFile);                                            
+                                            
+      
+                                        } catch (IOException ex) {
+                                            Logger.getLogger(PlaylistBuilderjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+     
+                                        
+//code for remove                                        
+                                    }
+                                });
+                                
+                                
+                                jPanelSongDisplay.add(newSBtn);
+                            }
+                            songRead.close();
+                            jPanelSongDisplay.validate();
+                            jPanelSongDisplay.repaint();
+                            jScrollPaneSongDisplay.validate();
+                            jScrollPaneSongDisplay.repaint();
+                        }catch (FileNotFoundException ex) {
+                            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (Exception ex) {
+                            Logger.getLogger(PlaylistBuilderjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     
@@ -307,6 +389,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel7;
