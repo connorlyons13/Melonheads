@@ -74,7 +74,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanelSongDisplay.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelSongDisplay.setLayout(new java.awt.GridLayout(0, 1));
+        jPanelSongDisplay.setLayout(new java.awt.GridLayout(0, 5));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel11.setText("<html>Welcome to the Playlist Editor! <br>Here you will be able to add songs to your playlist!<br>Simply search for a song, click on the button, and it will be added to your playlist!</html>");

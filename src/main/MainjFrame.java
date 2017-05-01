@@ -1042,7 +1042,6 @@ public class MainjFrame extends javax.swing.JFrame{
             File newPlaylist = new File("data/playlists/" + jTextField2.getText() +".txt");
             FileWriter fileWriter2 = new FileWriter(newPlaylist, true);
             PrintWriter playlistWriter2 = new PrintWriter(fileWriter2, true);
-            playlistWriter2.println("1");
             playlistWriter2.close();
             fileWriter2.close();
         
@@ -1324,17 +1323,18 @@ public class MainjFrame extends javax.swing.JFrame{
         
         if(choice == 0) {
             try {
-                File currentPlaylist = new File("data/playlists/"+jLabelSelectedMenu.getText()+"/");
+                File currentPlaylist = new File("data/playlists/"+jLabelSelectedMenu.getText()+".txt");
                 BufferedReader reader1 = new BufferedReader(new FileReader(currentPlaylist));
-                String line1 = "";
-                while((reader1.readLine()) != null){
-                    line1.concat(reader1.readLine());
-                    line1.concat(" ");
+                String line = "";
+                String content = "";
+                while((line = reader1.readLine()) != null){
+                    content += line + ",";
                 }
-                APIConnections.createPlaylist(jLabelSelectedMenu.getText(), line1);
+                content = content.substring(0, content.length() - 1);
+                APIConnections.createPlaylist(jLabelSelectedMenu.getText(), content);
             }
             catch (Exception e) {
-                
+                e.printStackTrace();
             }
         }
         else {
