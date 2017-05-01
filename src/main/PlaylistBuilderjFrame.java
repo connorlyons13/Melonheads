@@ -320,7 +320,13 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
                                             }
                                             lineWrite.close(); 
                                             lineRead.close(); 
-                                            temp.renameTo(inputFile);                                            
+                                            temp.renameTo(inputFile); 
+                                            
+                                            jPanelSongDisplay.remove(newSBtn);
+                                            jPanelSongDisplay.validate();
+                                            jPanelSongDisplay.repaint();
+                                            jScrollPaneSongDisplay.validate();
+                                            jScrollPaneSongDisplay.repaint();
                                             
       
                                         } catch (IOException ex) {
