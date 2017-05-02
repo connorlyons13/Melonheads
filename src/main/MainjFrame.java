@@ -7,6 +7,7 @@ package main;
 
 //imports here
 import api.APIConnections;
+import api.InvalidYoutubeVideoUrlException;
 import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import java.awt.BorderLayout;
@@ -949,8 +950,13 @@ public class MainjFrame extends javax.swing.JFrame{
                         options,
                         "Yes, submit song");
                 if (option == 0) {
-                    APIConnections.createSong(title, artist, album, jTextField2.getText(), jComboBox1.getSelectedItem().toString());
-                    JOptionPane.showMessageDialog(null,"Add complete!", "Submit Complete", JOptionPane.INFORMATION_MESSAGE);
+                    try {
+                        APIConnections.createSong(title, artist, album, jTextField2.getText(), jComboBox1.getSelectedItem().toString());
+                        JOptionPane.showMessageDialog(null,"Add complete!", "Submit Complete", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    catch(InvalidYoutubeVideoUrlException e) {
+                        JOptionPane.showMessageDialog(null,"Invalid Youtube URL. Song not added.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 else {
                     //code for when they click no
