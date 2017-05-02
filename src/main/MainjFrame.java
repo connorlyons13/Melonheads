@@ -881,6 +881,32 @@ public class MainjFrame extends javax.swing.JFrame{
         jPanel1.repaint();
         jScrollPane1.validate();
         jScrollPane1.repaint();
+        
+        
+
+        try {
+            ArrayList<Integer> songIds = new ArrayList<Integer>();    
+            songIds = APIConnections.getRecentSongIds();
+            ArrayList<Song> songs = new ArrayList<Song>();
+            System.out.println("size = " + songIds.size() + " api call size = " + APIConnections.getRecentSongIds().size());
+            
+            for(int i = 0; i < songIds.size(); i++){
+                
+                songs.add(APIConnections.getSongs(1, String.valueOf(songIds.get(i))).get(0));
+                System.out.println(songIds.get(i));            
+            }
+            
+            setResultPanel(songs);
+        
+        
+        
+        
+        
+        
+        } catch (Exception ex) {
+            Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
     }//GEN-LAST:event_newAdditionsButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
