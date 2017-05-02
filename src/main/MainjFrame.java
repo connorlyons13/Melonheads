@@ -1080,6 +1080,9 @@ public class MainjFrame extends javax.swing.JFrame{
                ArrayList<Song> results = new ArrayList<Song>();
                results = APIConnections.getSongs(APIConnections.GET_SEARCH, jTextFieldSearch.getText().replaceAll(" ","%20"));
                
+               
+               setResultPanel(results);               
+               /*
                jPanel1.removeAll();
                jPanel1.setLayout(grd3col);
                jPanel1.revalidate();
@@ -1164,7 +1167,8 @@ public class MainjFrame extends javax.swing.JFrame{
                     jPanel1.add(dislikeBtn);
                     jPanel1.validate();
                     jScrollPane1.validate();
-               }                        
+               }
+               */
             
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -1173,6 +1177,100 @@ public class MainjFrame extends javax.swing.JFrame{
         
     }//GEN-LAST:event_jTextFieldSearchKeyPressed
 
+    private void setResultPanel(ArrayList<Song> results){
+               
+               jPanel1.removeAll();
+               jPanel1.setLayout(grd3col);
+               jPanel1.revalidate();
+               jPanel1.repaint();
+               
+               JLabel ata = new JLabel("artist--title--album");
+               ata.setFont(new java.awt.Font("Bebas Neue", 0, 40));
+               ata.setForeground(new java.awt.Color(51, 153, 0));
+               ata.setHorizontalAlignment(SwingConstants.CENTER);
+               ata.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+               JLabel plays = new JLabel("plays");
+               plays.setFont(new java.awt.Font("Bebas Neue", 0, 40));
+               plays.setForeground(new java.awt.Color(51, 153, 0));
+               plays.setHorizontalAlignment(SwingConstants.CENTER);
+               plays.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+               JLabel ratingLb = new JLabel("rating");
+               ratingLb.setFont(new java.awt.Font("Bebas Neue", 0, 40));
+               ratingLb.setForeground(new java.awt.Color(51, 153, 0));
+               ratingLb.setHorizontalAlignment(SwingConstants.CENTER);
+               ratingLb.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+               JLabel blank = new JLabel("");
+               JLabel blank2 = new JLabel("");
+               
+               jPanel1.add(ata);
+               jPanel1.add(plays);
+               jPanel1.add(ratingLb);
+               jPanel1.add(blank);
+               jPanel1.add(blank2);
+               
+               for(int i = 0; i < results.size(); i++)
+               {
+                    final Song tempSong = results.get(i);
+                    JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
+                    JLabel playsLbl = new JLabel(""+tempSong.getPlays()+"");
+                    playsLbl.setHorizontalAlignment(SwingConstants.CENTER);
+                    int rating;
+                    double value = 0.0;
+                    double upVotes = 0.0;
+                    double downVotes, total;
+                    if (tempSong.getUpvotes() == 0)
+                        rating = 0;
+                    else
+                        upVotes = tempSong.getUpvotes();
+                        downVotes = tempSong.getDownvotes();
+                        total = upVotes + downVotes;
+                        value = (upVotes / total) * 100;
+                        rating = (int)value;
+                    JLabel ratingLbl = new JLabel(""+rating+"%");
+                    ratingLbl.setHorizontalAlignment(SwingConstants.CENTER);
+                    JButton likeBtn = new JButton("LIKE");
+                    likeBtn.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent ae4){
+                            tempSong.addUpvote();
+                            try {
+                                APIConnections.voteSong(tempSong.getId(), APIConnections.VOTE_UP);
+                            } catch (Exception e){}
+                        }
+                    });
+                    JButton dislikeBtn = new JButton("DISLIKE");
+                    dislikeBtn.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent ae5){
+                            tempSong.addDownvote();
+                            try {
+                                APIConnections.voteSong(tempSong.getId(), APIConnections.VOTE_DOWN);
+                            } catch (Exception e){}
+                        }
+                    });
+                    newBtn.setHorizontalAlignment(SwingConstants.LEFT);
+                    newBtn.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            playSong(tempSong);
+                            tempSong.addPlays();
+                            try {
+                                APIConnections.playSong(tempSong.getId());
+                            } catch (Exception ee){}
+                        }
+                    });
+                    jPanel1.add(newBtn);
+                    jPanel1.add(playsLbl);
+                    jPanel1.add(ratingLbl);
+                    jPanel1.add(likeBtn);
+                    jPanel1.add(dislikeBtn);
+                    jPanel1.validate();
+                    jScrollPane1.validate();
+               }
+               
+    }
+    
+    
+    
+    
+    
     private void advSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advSearchButtonActionPerformed
        jLabelSelectedMenu.setText("Advanced Search");
         jSeparator4.setVisible(true);
@@ -1219,8 +1317,11 @@ public class MainjFrame extends javax.swing.JFrame{
                 //APIConnections.getSongs(APIConnections.GET_ARTIST, searchTerm);
                 musicButton.doClick();
                 ArrayList<Song> results = new ArrayList<Song>();
-                results = APIConnections.getSongs(APIConnections.GET_ARTIST, searchTerm);
-               
+                results = APIConnections.getSongs(APIConnections.GET_ARTIST, searchTerm.replaceAll(" ","%20"));
+                
+                setResultPanel(results);
+                
+                /*
                 jPanel1.removeAll();
                 jPanel1.revalidate();
                 jPanel1.repaint();
@@ -1237,7 +1338,7 @@ public class MainjFrame extends javax.swing.JFrame{
                     jPanel1.add(newBtn);
                     jPanel1.validate();
                     jScrollPane1.validate();
-                }
+                }*/
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1247,8 +1348,11 @@ public class MainjFrame extends javax.swing.JFrame{
                 //APIConnections.getSongs(APIConnections.GET_ALBUM, searchTerm);
                 musicButton.doClick();
                 ArrayList<Song> results = new ArrayList<Song>();
-                results = APIConnections.getSongs(APIConnections.GET_ALBUM, searchTerm);
+                results = APIConnections.getSongs(APIConnections.GET_ALBUM, searchTerm.replaceAll(" ","%20"));
                
+                
+                setResultPanel(results);                
+                /*
                 jPanel1.removeAll();
                 jPanel1.revalidate();
                 jPanel1.repaint();
@@ -1266,6 +1370,7 @@ public class MainjFrame extends javax.swing.JFrame{
                     jPanel1.validate();
                     jScrollPane1.validate();
                 }
+                */
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1275,8 +1380,10 @@ public class MainjFrame extends javax.swing.JFrame{
                 //APIConnections.getSongs(APIConnections.GET_TITLE, searchTerm);
                 musicButton.doClick();
                 ArrayList<Song> results = new ArrayList<Song>();
-                results = APIConnections.getSongs(APIConnections.GET_TITLE, searchTerm);
+                results = APIConnections.getSongs(APIConnections.GET_TITLE, searchTerm.replaceAll(" ","%20"));
                
+                setResultPanel(results);                
+                /*
                 jPanel1.removeAll();
                 jPanel1.revalidate();
                 jPanel1.repaint();
@@ -1294,6 +1401,7 @@ public class MainjFrame extends javax.swing.JFrame{
                     jPanel1.validate();
                     jScrollPane1.validate();
                 }
+                */
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
