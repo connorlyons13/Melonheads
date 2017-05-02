@@ -932,8 +932,16 @@ public class MainjFrame extends javax.swing.JFrame{
                     album = " ";
                 }
                 Object[] options = {"Yes, submit song","No, do not submit"};
+                Song tempSong = new Song();
+                tempSong.setTitle(title);
+                tempSong.setArtist(artist);
+                tempSong.setAlbum(album);
+                tempSong.setURL(APIConnections.getYoutubeVideoId(jTextField2.getText()));
+                tempSong.setSource(jComboBox1.getSelectedItem().toString());
+                playSong(tempSong);
                 int option = JOptionPane.showOptionDialog(null,
-                        "Are you sure you wish to submit this song?",
+                        "Please make sure the song you've selected is properly playing in the background,\n"
+                                + "in the main window. Are you sure you wish to submit this song?",
                         "Confirm song submission",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.INFORMATION_MESSAGE,
@@ -942,11 +950,11 @@ public class MainjFrame extends javax.swing.JFrame{
                         "Yes, submit song");
                 if (option == 0) {
                     APIConnections.createSong(title, artist, album, jTextField2.getText(), jComboBox1.getSelectedItem().toString());
+                    JOptionPane.showMessageDialog(null,"Add complete!", "Submit Complete", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else {
                     //code for when they click no
                 }
-                //JOptionPane.showMessageDialog(null,"Add complete!", "Submit Complete", JOptionPane.INFORMATION_MESSAGE);
                 jTextField3.setText("");
                 jTextField4.setText("");
                 jTextField5.setText("");
