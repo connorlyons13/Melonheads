@@ -931,8 +931,22 @@ public class MainjFrame extends javax.swing.JFrame{
                 if (album.equals("")) {
                     album = " ";
                 }
-                APIConnections.createSong(title, artist, album, jTextField2.getText(), jComboBox1.getSelectedItem().toString());
-                JOptionPane.showMessageDialog(null,"Add complete!", "Submit Complete", JOptionPane.INFORMATION_MESSAGE);
+                Object[] options = {"Yes, submit song","No, do not submit"};
+                int option = JOptionPane.showOptionDialog(null,
+                        "Are you sure you wish to submit this song?",
+                        "Confirm song submission",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.INFORMATION_MESSAGE,
+                        null,
+                        options,
+                        "Yes, submit song");
+                if (option == 0) {
+                    APIConnections.createSong(title, artist, album, jTextField2.getText(), jComboBox1.getSelectedItem().toString());
+                }
+                else {
+                    //code for when they click no
+                }
+                //JOptionPane.showMessageDialog(null,"Add complete!", "Submit Complete", JOptionPane.INFORMATION_MESSAGE);
                 jTextField3.setText("");
                 jTextField4.setText("");
                 jTextField5.setText("");
