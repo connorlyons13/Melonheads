@@ -15,7 +15,8 @@ import main.Playlist;
 
 
 /**
- *
+ * This class includes every piece of code needed to connect to the API, and returns information
+ * to the rest of the client for use. Each method handles a single API endpoint.
  * @author Nick Schillaci
  */
 public class APIConnections {
@@ -25,6 +26,10 @@ public class APIConnections {
     public static final int VOTE_UP = 0, VOTE_DOWN = 1;
     public static final String SRC_YOUTUBE = "youtube";
     
+    /**
+     * Contact the API to retrieve a list of songs from a search,
+     * given a search and a search type (including general, or 'normal' search)
+     */
     public static ArrayList<Song> getSongs(int getType, String searchTerm) throws Exception {
       StringBuilder result = new StringBuilder();
       URL url = null;
@@ -62,6 +67,9 @@ public class APIConnections {
       return songs;
     }
     
+    /**
+     * Send song data to the API to create a song object and save it in the database.
+     */
     public static Song createSong(String title, String artist, String album, String url, String src) throws Exception {
         // if the source is youtube, we only need the video id from the url
         if(src.equals(SRC_YOUTUBE)) {
@@ -104,6 +112,10 @@ public class APIConnections {
 	}
     }
     
+    /**
+     * Update a song's information with the information given. Every field is required, as all will be updated.
+     * For any fields that should be unchanged, send the method its original value (from the song object to be updated).
+     */
     public static Song updateSong(int id, String title, String artist, String album, String url, String src) throws Exception {
          // if the source is youtube, we only need the video id from the url
         if(src.equals(SRC_YOUTUBE)) {
@@ -147,6 +159,9 @@ public class APIConnections {
  	}  
      }
     
+    /**
+     * Send a song ID to the deletion endpoint to delete a song from the database.
+     */
     public static boolean deleteSong(int id) throws Exception {
         URL object;
         object = new URL(address + "/songs/delete");
@@ -173,6 +188,9 @@ public class APIConnections {
 	}  
     }
     
+    /**
+     * Update the play count of a referenced song in the database.
+     */
     public static boolean playSong(int id) throws Exception {
 		URL object;
 		object = new URL(address + "/songs/play");
@@ -205,6 +223,9 @@ public class APIConnections {
 		}
 	}
 	
+    /**
+     * Increment the amount of upvotes recorded for a referenced song.
+     */
 	public static boolean voteSong(int id, int voteType) throws Exception {
 		URL object;
 		object = new URL(address + "/songs/vote");
@@ -237,6 +258,11 @@ public class APIConnections {
 		}
 	}
     
+    /**
+     * Contact the 'recent' API endpoint to retrieve the list of recent songs by ID
+     * @return
+     * @throws Exception 
+     */
     public static ArrayList<Integer> getRecentSongIds() throws Exception {
       StringBuilder result = new StringBuilder();
       URL url = new URL(address + "/songs/recent");
@@ -254,6 +280,9 @@ public class APIConnections {
       return songIds;
     }
         
+    /**
+     * Helper method designed to aid in the storage and playback of Youtube URLs specifically.
+     */
     public static String getYoutubeVideoId(String youtubeUrl) {
         String video_id="";
         if (youtubeUrl != null && youtubeUrl.trim().length() > 0 && youtubeUrl.startsWith("http")) {
@@ -272,6 +301,10 @@ public class APIConnections {
     
     /**
      * Methods for Playlist Endpoints
+     */
+    
+    /**
+     * Retrieve information about a saved playlist given the ID of the playlist.
      */
     public static ArrayList<Playlist> getPlaylist(String getID) throws Exception {
         StringBuilder result = new StringBuilder();
@@ -296,6 +329,9 @@ public class APIConnections {
         return playlists;
       }
     
+    /**
+     * Send a list of song IDs to the API to create a playlist to be saved in the database.
+     */
     public static Playlist createPlaylist(String title, String songidlist) throws Exception {
         // if the source is youtube, we only need the video id from the url
         
@@ -331,6 +367,10 @@ public class APIConnections {
 		}
     }
     
+    /**
+     * Send information about a playlist to the API to update the referenced
+     * playlist with a new list of songs.
+     */
     public static Playlist updatePlaylist(int id, String title, String songidlist) throws Exception {
         URL object;
         object = new URL(address + "/playlists/update");
@@ -365,6 +405,9 @@ public class APIConnections {
     	}  
     }
     
+    /**
+     * Remove a referenced playlist from the database.
+     */
     public static boolean deletePlaylist(int id) throws Exception {
         URL object;
         object = new URL(address + "/playlists/delete");
@@ -391,6 +434,9 @@ public class APIConnections {
 		}  
     }
     
+    /**
+     * Retrieve a list of recently uploaded playlists from the API.
+     */
     public static ArrayList<Integer> getRecentPlaylistIds() throws Exception {
       StringBuilder result = new StringBuilder();
       URL url = new URL(address + "/playlists/recent");
