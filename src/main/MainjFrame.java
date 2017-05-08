@@ -44,7 +44,7 @@ import javax.swing.SwingConstants;
  */
 public class MainjFrame extends javax.swing.JFrame{
     
-    private JWebBrowser webBrowser;
+    private JWebBrowser webBrowser; //webBrowser object is where video is played
     private GridLayout grd1col = new GridLayout(0, 1);
     private GridLayout grd3col = new GridLayout(0, 5);
     
@@ -99,6 +99,8 @@ public class MainjFrame extends javax.swing.JFrame{
             }
         });
         
+        //Create directory for playlist file storage on user's machine
+        //and populate the playlist quick reference bar with playlists
         File playlists = new File("data/playlists/playlist.txt");
         try {
             new File("data/").mkdir(); // ensure that the data folder exists
@@ -582,10 +584,13 @@ public class MainjFrame extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //NOT USED
     private void jTextFieldSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchActionPerformed
      
     }//GEN-LAST:event_jTextFieldSearchActionPerformed
 
+    //Function used to go to the "add a song" page by clicking
+    //on the "add song" button, the "+" button on the upper right
     private void addSongButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSongButtonActionPerformed
         jLabelSelectedMenu.setText("Add a new song");
         jSeparator4.setVisible(true);
@@ -622,6 +627,8 @@ public class MainjFrame extends javax.swing.JFrame{
         publicBtn.setVisible(false);
     }//GEN-LAST:event_addSongButtonActionPerformed
 
+    //Function to access the user's playlist and populate the main
+    //panel with the list of playlists
     private void myPlaylistsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myPlaylistsButtonActionPerformed
         jLabelSelectedMenu.setText("My playlists");
         jSeparator4.setVisible(true);
@@ -753,6 +760,7 @@ public class MainjFrame extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_myPlaylistsButtonActionPerformed
 
+    //Function to bring up music in the main panel, used for searches
     private void musicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicButtonActionPerformed
         jLabelSelectedMenu.setText("Music");
         jSeparator4.setVisible(true);
@@ -786,6 +794,8 @@ public class MainjFrame extends javax.swing.JFrame{
         jScrollPane1.repaint();
     }//GEN-LAST:event_musicButtonActionPerformed
 
+    //Function used to bring up the page to create a new playlist in
+    //the main panel
     private void createNewPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewPlaylistButtonActionPerformed
         jLabelSelectedMenu.setText("Create a New Playlist");
         jSeparator4.setVisible(true);
@@ -818,6 +828,7 @@ public class MainjFrame extends javax.swing.JFrame{
         publicBtn.setVisible(false);
     }//GEN-LAST:event_createNewPlaylistButtonActionPerformed
 
+    //Function used to bring up the newest playlists in the main panel
     private void popularPlaylistsButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popularPlaylistsButton3ActionPerformed
         jLabelSelectedMenu.setText("Popular playlists");
         jSeparator4.setVisible(true);
@@ -851,6 +862,7 @@ public class MainjFrame extends javax.swing.JFrame{
         jScrollPane1.repaint();
     }//GEN-LAST:event_popularPlaylistsButton3ActionPerformed
 
+    //Function to bring up the newest songs added to the main panel
     private void newAdditionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAdditionsButtonActionPerformed
         jLabelSelectedMenu.setText("New Additions");
         jSeparator4.setVisible(true);
@@ -910,10 +922,15 @@ public class MainjFrame extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_newAdditionsButtonActionPerformed
 
+    //NOT USED
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    //Function to submit the song to the Melonheads database.
+    //Error checks the text fields for completeness, does not submit if incorrect.
+    //Displays a confirmation option dialog box afterwards where the song is
+    //played for the user to verify their submission.
     private void jButtonSubimtSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubimtSongActionPerformed
         try {
             //SUBMIT button for adding a new song
@@ -1123,6 +1140,8 @@ public class MainjFrame extends javax.swing.JFrame{
          jTextFieldSearch.setText("") ;
     }//GEN-LAST:event_jTextFieldSearchMousePressed
 
+    //Function on what to display when a search is performed by the user
+    //inputting text into the search bar and hitting Enter
     private void jTextFieldSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             try {
@@ -1231,6 +1250,7 @@ public class MainjFrame extends javax.swing.JFrame{
         
     }//GEN-LAST:event_jTextFieldSearchKeyPressed
 
+    //Organizes the results in the main panel with headings
     private void setResultPanel(ArrayList<Song> results){
                
                jPanel1.removeAll();
@@ -1463,6 +1483,7 @@ public class MainjFrame extends javax.swing.JFrame{
         
     }//GEN-LAST:event_advSearchPannleButtonActionPerformed
 
+    //Opens the playlist builder jFrame window
     private void playEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playEditButtonActionPerformed
        //Need to get whatever playlist is open to pass info to the playlist buiderframe
              PlaylistBuilderjFrame PlaylistBuiderFrame = new PlaylistBuilderjFrame( null,jLabelSelectedMenu.getText());
@@ -1471,6 +1492,8 @@ public class MainjFrame extends javax.swing.JFrame{
        
     }//GEN-LAST:event_playEditButtonActionPerformed
 
+    //function to make a playlist public by pushing it and it's songs
+    //to the database
     private void publicBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publicBtnActionPerformed
         Object[] options = {"Yes","No"};
  
@@ -1504,6 +1527,7 @@ public class MainjFrame extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_publicBtnActionPerformed
 
+    //Plays the song. Done automatically when clicking on a song
     private boolean playSong(Song song) {
         if(song.getSource().equals("youtube")) {
             webBrowser.navigate("https://www.youtube.com/v/" + song.getURL() + "&autoplay=1&autohide=0");
