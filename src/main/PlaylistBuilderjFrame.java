@@ -178,6 +178,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextFieldSearchActionPerformed
 
+    //used basic search command similar to the mainfame that can be used to add a song to a playlist.
     private void jTextFieldSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             String test = null;
@@ -286,6 +287,7 @@ public class PlaylistBuilderjFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextFieldSearchKeyPressed
 
+    // button used to change panel into song deletion mode
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
     
