@@ -616,11 +616,6 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setText("");
         jButtonSubimtSong.setVisible(true);
         jButtonSubmitPlaylist.setVisible(false);
-        //songTitleLbl.setVisible(false);
-        //songArtistLbl.setVisible(false);
-        //songAlbumLbl.setVisible(false);
-        //songPlaysLbl.setVisible(false);
-        //musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
@@ -644,11 +639,6 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(false);
-        //songTitleLbl.setVisible(false);
-        //songArtistLbl.setVisible(false);
-        //songAlbumLbl.setVisible(false);
-        //songPlaysLbl.setVisible(false);
-        //musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
@@ -681,9 +671,7 @@ public class MainjFrame extends javax.swing.JFrame{
                         jScrollPane1.validate();
                         
                         
-                        //jPanel1.removeAll();
-                        //jPanel1.revalidate();
-                        //jPanel1.repaint();
+
                         jLabel2.setVisible(false);
                         jLabel3.setVisible(false);
                         jLabel4.setVisible(false);
@@ -696,11 +684,6 @@ public class MainjFrame extends javax.swing.JFrame{
                         jComboBox1.setVisible(false);
                         jButtonSubimtSong.setVisible(false);
                         jButtonSubmitPlaylist.setVisible(false);
-                        //songTitleLbl.setVisible(true);
-                        //songArtistLbl.setVisible(true);
-                        //songAlbumLbl.setVisible(true);
-                        //songPlaysLbl.setVisible(true);
-                        //musicSeparator.setVisible(true);
                         jScrollPane1.setVisible(true);
                         playEditButton.setVisible(true);
                         publicBtn.setVisible(true);
@@ -776,11 +759,6 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(false);
-        //songTitleLbl.setVisible(true);
-        //songArtistLbl.setVisible(true);
-        //songAlbumLbl.setVisible(true);
-        //songPlaysLbl.setVisible(true);
-        //musicSeparator.setVisible(true);
         jScrollPane1.setVisible(true);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
@@ -803,12 +781,6 @@ public class MainjFrame extends javax.swing.JFrame{
         jLabel2.setText("Playlist name:");
         jTextField2.setVisible(true);
         jTextField2.setText("");
-        //jLabel3.setVisible(true);
-        //jLabel3.setText("Playlist public or private?");
-        //jComboBox1.setVisible(true);
-        //jComboBox1.removeAllItems();
-        //jComboBox1.addItem("Public");
-        //jComboBox1.addItem("Private");
         jLabel4.setVisible(false);
         jLabel5.setVisible(false);
         jLabel6.setVisible(false);
@@ -817,11 +789,6 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(true);
-        //songTitleLbl.setVisible(false);
-        //songArtistLbl.setVisible(false);
-        //songAlbumLbl.setVisible(false);
-        //songPlaysLbl.setVisible(false);
-        //musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
@@ -844,11 +811,6 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(false);
-        //songTitleLbl.setVisible(false);
-        //songArtistLbl.setVisible(false);
-        //songAlbumLbl.setVisible(false);
-        //songPlaysLbl.setVisible(false);
-        //musicSeparator.setVisible(false);
         jScrollPane1.setVisible(false);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
@@ -878,11 +840,7 @@ public class MainjFrame extends javax.swing.JFrame{
         jTextField5.setVisible(false);
         jButtonSubimtSong.setVisible(false);
         jButtonSubmitPlaylist.setVisible(false);
-        //songTitleLbl.setVisible(true);
-        //songArtistLbl.setVisible(true);
-        //songAlbumLbl.setVisible(true);
-        //songPlaysLbl.setVisible(true);
-        //musicSeparator.setVisible(true);
+
         jScrollPane1.setVisible(true);
         advSearchPannleButton.setVisible(false);
         playEditButton.setVisible(false);
@@ -1011,30 +969,7 @@ public class MainjFrame extends javax.swing.JFrame{
         JButton newBtn = new JButton(jTextField2.getText());
         newBtn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae2){
-                /**
-                advSearchPannleButton.setVisible(false);
-                jLabel2.setVisible(false);
-                jLabel3.setVisible(false);
-                jLabel4.setVisible(false);
-                jLabel5.setVisible(false);
-                jLabel6.setVisible(false);
-                jTextField2.setVisible(false);
-                jTextField3.setVisible(false);
-                jTextField4.setVisible(false);
-                jTextField5.setVisible(false);
-                jComboBox1.setVisible(false);
-                jButtonSubimtSong.setVisible(false);
-                jButtonSubmitPlaylist.setVisible(false);
-                //songTitleLbl.setVisible(true);
-                //songArtistLbl.setVisible(true);
-                //songAlbumLbl.setVisible(true);
-                //songPlaysLbl.setVisible(true);
-                //musicSeparator.setVisible(true);
-                jScrollPane1.setVisible(true);
-                jLabelSelectedMenu.setText(newBtn.getText());
-                playEditButton.setVisible(true);
-                //Then populate with music from that playlist
-                **/
+
                 jPanel1.removeAll();
                         jPanel1.setLayout(grd1col);
                         jPanel1.validate();
@@ -1395,24 +1330,7 @@ public class MainjFrame extends javax.swing.JFrame{
                 
                 setResultPanel(results);
                 
-                /*
-                jPanel1.removeAll();
-                jPanel1.revalidate();
-                jPanel1.repaint();
-                for(int i = 0; i < results.size(); i++)
-                {
-                    final Song tempSong = results.get(i);
-                    JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
-                    newBtn.setHorizontalAlignment(SwingConstants.LEFT);
-                    newBtn.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            playSong(tempSong);
-                        }
-                    });
-                    jPanel1.add(newBtn);
-                    jPanel1.validate();
-                    jScrollPane1.validate();
-                }*/
+        
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1426,25 +1344,7 @@ public class MainjFrame extends javax.swing.JFrame{
                
                 
                 setResultPanel(results);                
-                /*
-                jPanel1.removeAll();
-                jPanel1.revalidate();
-                jPanel1.repaint();
-                for(int i = 0; i < results.size(); i++)
-                {
-                    final Song tempSong = results.get(i);
-                    JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
-                    newBtn.setHorizontalAlignment(SwingConstants.LEFT);
-                    newBtn.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            playSong(tempSong);
-                        }
-                    });
-                    jPanel1.add(newBtn);
-                    jPanel1.validate();
-                    jScrollPane1.validate();
-                }
-                */
+
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1457,25 +1357,7 @@ public class MainjFrame extends javax.swing.JFrame{
                 results = APIConnections.getSongs(APIConnections.GET_TITLE, searchTerm.replaceAll(" ","%20"));
                
                 setResultPanel(results);                
-                /*
-                jPanel1.removeAll();
-                jPanel1.revalidate();
-                jPanel1.repaint();
-                for(int i = 0; i < results.size(); i++)
-                {
-                    final Song tempSong = results.get(i);
-                    JButton newBtn = new JButton(tempSong.getArtist() + " - " + tempSong.getTitle() + " - " + tempSong.getAlbum());
-                    newBtn.setHorizontalAlignment(SwingConstants.LEFT);
-                    newBtn.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            playSong(tempSong);
-                        }
-                    });
-                    jPanel1.add(newBtn);
-                    jPanel1.validate();
-                    jScrollPane1.validate();
-                }
-                */
+
             } catch (Exception ex) {
                 Logger.getLogger(MainjFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
